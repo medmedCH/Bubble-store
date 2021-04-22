@@ -20,7 +20,7 @@ export function kcInitializer(keycloak: KeycloakService): () => Promise<any> {
       try {
         await keycloak.init(environment.keycloakOptions);
         console.log('Keycloak is initialized');
-        resolve();
+        resolve(null);
       } catch (error) {
         console.log('Error thrown in init ' + error);
         reject(error);
@@ -31,7 +31,6 @@ export function kcInitializer(keycloak: KeycloakService): () => Promise<any> {
 
 @NgModule({
   declarations: [
-    KeycloakAngularModule ,
     AppComponent,
     HeaderComponent,
     SidemenuComponent,
@@ -40,6 +39,7 @@ export function kcInitializer(keycloak: KeycloakService): () => Promise<any> {
     StoreBackComponent,
   ],
   imports: [
+    KeycloakAngularModule,
     ROUTING,
     RouterModule,
     BrowserModule,
@@ -49,7 +49,9 @@ export function kcInitializer(keycloak: KeycloakService): () => Promise<any> {
 
   ],
   providers: [
+
     { provide: APP_INITIALIZER, useFactory: kcInitializer, multi: true, deps: [KeycloakService] }
+
   ],
   bootstrap: [AppComponent]
 })

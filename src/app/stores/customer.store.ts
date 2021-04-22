@@ -38,9 +38,4 @@ export class CustomerStore extends Store<CustomerInfo> {
     await this.keycloakService.logout();
     this.store(undefined);
   }
-
-  login(): void {
-    this.keycloakService.login();
-    this.init();
-  }
 }

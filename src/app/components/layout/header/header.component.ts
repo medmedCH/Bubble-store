@@ -1,4 +1,7 @@
 import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
+import {CustomerStore} from '../../../stores/customer.store';
+import {Router} from '@angular/router';
+import {KeycloakService} from 'keycloak-angular';
 
 @Component({
   selector: 'app-header',
@@ -6,8 +9,7 @@ import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
-
-  constructor(private elementRef: ElementRef) {}
+  constructor(private customerStore: CustomerStore,private elementRef: ElementRef, private router: Router,private keycloakService: KeycloakService) {}
 
   ngAfterViewInit() {
   /* const s = document.createElement('script');
@@ -16,5 +18,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+  }
+
+    async doLogout() {
+    await this.router.navigate(['/']);
+    await this.customerStore.logout();
   }
 }
