@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Store} from './store';
-import {CustomerInfo} from '../models/user.info';
 import {KeycloakService} from 'keycloak-angular';
 import {from} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
+import {CustomerInfo} from '../Models/user.info';
 
 
 
@@ -39,8 +39,8 @@ export class CustomerStore extends Store<CustomerInfo> {
     this.store(undefined);
   }
 
- /* login(): void {
+  login(): void {
     this.keycloakService.login();
     this.init();
-  }*/
+  }
 }
