@@ -9,7 +9,8 @@ import {KeycloakService} from 'keycloak-angular';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
-  constructor(private customerStore: CustomerStore,private elementRef: ElementRef, private router: Router,private keycloakService: KeycloakService) {}
+  username='';
+  constructor(private ks :KeycloakService,private elementRef: ElementRef, private router: Router) {}
 
   ngAfterViewInit() {
   /* const s = document.createElement('script');
@@ -18,10 +19,15 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.getuserinfo();
+    console.log(this.ks.getToken())
   }
 
-    async doLogout() {
-    await this.router.navigate(['/']);
-    await this.customerStore.logout();
-  }
+private getuserinfo(){
+this.username=this.ks.getUsername();
+}
+Logout():void{
+    this.ks.logout();
+}
+
 }

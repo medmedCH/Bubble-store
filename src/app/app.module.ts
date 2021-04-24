@@ -21,7 +21,8 @@ export function kcInitializer(keycloak: KeycloakService): () => Promise<any> {
         await keycloak.init(environment.keycloakOptions);
         console.log('Keycloak is initialized');
         resolve(null);
-      } catch (error) {
+      }
+      catch (error) {
         console.log('Error thrown in init ' + error);
         reject(error);
       }
