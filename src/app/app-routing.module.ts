@@ -12,7 +12,6 @@ const routes: Routes = [
     redirectTo: '/rooms',
     pathMatch: 'full'
   },
-
 ];
 
 export const ROUTING = RouterModule.forRoot(routes);

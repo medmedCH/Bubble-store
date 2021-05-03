@@ -1,0 +1,25 @@
+<h3 class="prd">Liste des produits </h3>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Titre</th>
+    <th scope="col">Description</th>
+    <th scope="col">Prix</th>
+    <th scope="col">Quantité </th>
+    <th scope="col">Modifier</th>
+    <th scope="col">Supprimer</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let x of prod">
+    <td>{{x.title}}</td>
+    <td>{{x.description}}</td>
+    <td>{{x.price}}</td>
+    <td>{{x.quantity}}</td>
+    <td> <button class="btn btn-primary" ><i class="far fa-edit"></i></button></td>
+    <td> <button class="btn btn-danger"  ><i class="far fa-trash-alt"></i></button></td>
+
+  </tr>
+  </tbody>
+</table>

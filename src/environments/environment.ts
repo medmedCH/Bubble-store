@@ -24,8 +24,16 @@ const keycloakOptions: KeycloakOptions = {
   loadUserProfileAtStartUp: true,
 
 };
-
+const firebaseConfig = {
+  apiKey: 'AIzaSyC72wctPh0h604j4uQ_6PFGcVIgcwvq7bA',
+  authDomain: 'bubble-b3d30.firebaseapp.com',
+  projectId: 'bubble-b3d30',
+  storageBucket: 'bubble-b3d30.appspot.com',
+  messagingSenderId: '540436869163',
+  appId: '1:540436869163:web:3a06a18a5a8c6f4ecc7a6e',
+}
 export const environment = {
   production: false,
-  keycloakOptions
+  keycloakOptions,
+  firebaseConfig
 };

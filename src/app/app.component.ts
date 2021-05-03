@@ -10,6 +10,7 @@ export class AppComponent implements AfterViewInit , OnInit  {
   constructor() {
   }
   ngOnInit(): void {
+
     // @ts-ignore
     $('body').tooltip({selector: '[data-toggle=tooltip]'});
   }

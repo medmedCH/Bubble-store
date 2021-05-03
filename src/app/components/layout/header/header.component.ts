@@ -1,5 +1,4 @@
 import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
-import {CustomerStore} from '../../../stores/customer.store';
 import {Router} from '@angular/router';
 import {KeycloakService} from 'keycloak-angular';
 
@@ -20,12 +19,20 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getuserinfo();
-    console.log(this.ks.getToken())
+    this.getuserole();
+    console.log(this.ks.getToken());
+    console.log('role:',this.getuserole())
   }
 
-private getuserinfo(){
-this.username=this.ks.getUsername();
-}
+ private getuserinfo(){
+   this.username=this.ks.getUsername();
+        }
+  public getuserole(){
+     if( this.ks.isUserInRole("admin"))
+      return 'admin';
+     else
+       return 'user';
+  }
 Logout():void{
     this.ks.logout();
 }

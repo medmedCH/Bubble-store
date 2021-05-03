@@ -10,8 +10,8 @@ export class CategorieService {
   constructor(private http: HttpClient) {
   }
 
-  getcat()  {
-    return this.http.get<Categorie[]>('http://localhost:8080/api/categories');
+   getcat()  {
+    return   this.http.get<Categorie[]>('/api/categories');
   }
 
 

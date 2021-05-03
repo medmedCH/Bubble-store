@@ -12,7 +12,7 @@ import {CommonModule} from '@angular/common';
 @NgModule({
   imports: [
     StoreRouting,
-    CommonModule
+    CommonModule,
 
   ],
   declarations: [

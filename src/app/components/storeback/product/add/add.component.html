@@ -1,0 +1,103 @@
+<div class="divv">
+
+  <button type="button" class="btn btn-primary btn-sm" routerLink="/storeback/product/add">Ajouter Produit</button>
+  <button type="button" class="btn btn-primary btn-sm" routerLink="/storeback/product/show">Tous Les Produits</button>
+</div>
+<hr class="hr">
+<div class="container-add" class="cssdiv">
+  <h1  class="titre">Ajouter Produit</h1>
+  <form [formGroup]="productForm" >
+
+
+    <div class="form-group row">
+      <label for="inputName" class="col-sm-2 col-form-label">Titre</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="titre"    id="inputName" placeholder="Titre du produit" formControlName="titreinput" class="cc">
+        <div *ngIf="titreinput.invalid && titreinput.touched" class="alert alert-danger">
+          <div *ngIf=" titreinput.touched && titreinput.errors.required">Titre obligatoire</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputDescription" class="col-sm-2 col-form-label">Description</label>
+      <div class="col-sm-10">
+        <input type="textarea" class="form-control"   id="inputDescription" placeholder="Description du produit"
+               formControlName="descriptionInput" class="cc">
+        <div *ngIf="descriptionInput.invalid && descriptionInput.touched" class="alert alert-danger">
+          <div *ngIf=" descriptionInput.touched && descriptionInput.errors.required">Description Obligatoire</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputRef" class="col-sm-2 col-form-label">Quantité</label>
+      <div class="col-sm-10">
+        <input type="text" onkeyup="if(this.value<0){this.value= this.value * -1}" onkeypress='return event.charCode >= 48 && event.charCode <= 57 ' class="form-control"  id="inputRef" placeholder="Quantité du produit" formControlName="quantity" class="cc">
+        <div *ngIf="quantity.invalid && quantity.touched" class="alert alert-danger">
+          <div *ngIf=" quantity.touched && quantity.errors.required">Reference is required</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="" class="col-sm-2 col-form-label">Catégorie</label>
+      <div class="col-sm-10">
+        <div class="form-group">
+
+          <select class="form-control" id="exampleFormControlSelect1" name="categoryId" formControlName="catego" class="cc">
+            <option >Choisir Une Catégorie</option>
+            <option *ngFor="let x of cat"  value="{{x.id}}" >{{x.name}}  </option>
+          </select>
+          <div *ngIf="catego.invalid && catego.touched" class="alert alert-danger">
+            <div *ngIf=" catego.touched && catego.errors.required">Catégorie obligatoire </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group row"  >
+      <label for="inputPrice" class="col-sm-2 col-form-label">Prix</label>
+      <div class="col-sm-10">
+        <input type="text" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"  class="form-control" id="inputPrice" placeholder="Price" formControlName="priceInput" class="cc">
+        <div *ngIf="priceInput.invalid && priceInput.touched" class="alert alert-danger">
+          <div *ngIf=" priceInput.touched && priceInput.errors.required">Prix Obligatoire</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-group row"  >
+      <label for="inputPrice" class="col-sm-2 col-form-label">Image  </label>
+
+      <div class="col-sm-10">
+        <label for="fileimg" class="bb"><i class="fas fa-plus"></i> Image Principale
+          <input type="file" formControlName="imgg" name="file" id="fileimg" style="display: none;"
+                 accept="image/*" #imageInput (change)="upload($event)" >
+          <div *ngIf="imgg.invalid && imgg.touched" class="alert alert-danger">
+            <div *ngIf=" imgg.touched && imgg.errors.required">Image Obligatoire</div>
+          </div>
+        </label>
+      </div>
+
+
+    </div>
+
+
+
+
+    <div  class="butt">
+      <div class="col-sm-10">
+        <button type="button"  class="btn btn-primary" (click)="addproduct()"> Ajouter
+        </button>
+        <button type="button" class="btn btn-primary"  (click)="onReset()">Annuler
+        </button>
+
+      </div>
+    </div>
+
+
+
+  </form>
+</div>

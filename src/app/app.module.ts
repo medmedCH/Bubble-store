@@ -10,9 +10,14 @@ import { ChatComponent } from './components/site/chat/chat.component';
 import {StoreModule} from './components/store/store.module';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
-import { StoreBackComponent } from './components/store-back/store-back.component';
 import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import {environment} from '../environments/environment';
+import { StorebackComponent } from './components/storeback/storeback.component';
+import {StorebackModule} from './components/storeback/storeback.module';
+import {AngularFireStorageModule} from '@angular/fire/storage'
+import {AngularFireModule} from '@angular/fire'
+
+
 
 export function kcInitializer(keycloak: KeycloakService): () => Promise<any> {
   return (): Promise<any> => {
@@ -37,7 +42,6 @@ export function kcInitializer(keycloak: KeycloakService): () => Promise<any> {
     SidemenuComponent,
     RoomsComponent,
     ChatComponent,
-    StoreBackComponent,
   ],
   imports: [
     KeycloakAngularModule,
@@ -45,8 +49,11 @@ export function kcInitializer(keycloak: KeycloakService): () => Promise<any> {
     RouterModule,
     BrowserModule,
     StoreModule,
+    StorebackModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
 
   ],
   providers: [

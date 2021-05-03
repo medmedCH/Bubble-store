@@ -384,9 +384,9 @@
                     <span (click)="Logout()">Log Out</span>
                   </a>
                 </li>
-                <li>
-                  <a href="#">
-                    <svg class="olymp-three-dots-icon"><use xlink:href="#olymp-three-dots-icon"></use></svg>
+                <li *ngIf="getuserole()=='admin'">
+                  <a routerLink="/storeback">
+                    <svg class="olymp-three-dots-icon" > ><use xlink:href="#olymp-three-dots-icon"></use></svg>
 
                     <span>Gestion Bubble-store</span>
                   </a>
