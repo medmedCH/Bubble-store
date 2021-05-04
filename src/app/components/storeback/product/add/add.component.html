@@ -47,7 +47,7 @@
 
           <select class="form-control" id="exampleFormControlSelect1" name="categoryId" formControlName="catego" class="cc">
             <option >Choisir Une Catégorie</option>
-            <option *ngFor="let x of cat"  value="{{x.id}}" >{{x.name}}  </option>
+            <option *ngFor="let x of cat"  value="{{x.id}}" class="opt" >{{x.name}}  </option>
           </select>
           <div *ngIf="catego.invalid && catego.touched" class="alert alert-danger">
             <div *ngIf=" catego.touched && catego.errors.required">Catégorie obligatoire </div>
@@ -60,7 +60,7 @@
     <div class="form-group row"  >
       <label for="inputPrice" class="col-sm-2 col-form-label">Prix</label>
       <div class="col-sm-10">
-        <input type="text" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"  class="form-control" id="inputPrice" placeholder="Price" formControlName="priceInput" class="cc">
+        <input type="text" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"  class="form-control" id="inputPrice" placeholder="Prix" formControlName="priceInput" class="cc">
         <div *ngIf="priceInput.invalid && priceInput.touched" class="alert alert-danger">
           <div *ngIf=" priceInput.touched && priceInput.errors.required">Prix Obligatoire</div>
         </div>
@@ -73,11 +73,9 @@
 
       <div class="col-sm-10">
         <label for="fileimg" class="bb"><i class="fas fa-plus"></i> Image Principale
-          <input type="file" formControlName="imgg" name="file" id="fileimg" style="display: none;"
+          <input type="file" name="file" id="fileimg" style="display: none;"
                  accept="image/*" #imageInput (change)="upload($event)" >
-          <div *ngIf="imgg.invalid && imgg.touched" class="alert alert-danger">
-            <div *ngIf=" imgg.touched && imgg.errors.required">Image Obligatoire</div>
-          </div>
+
         </label>
       </div>
 

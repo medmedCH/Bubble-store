@@ -24,7 +24,7 @@ const keycloakOptions: KeycloakOptions = {
   loadUserProfileAtStartUp: true,
 
 };
-const firebaseConfig = {
+const firebaseConfig  ={
   apiKey: 'AIzaSyC72wctPh0h604j4uQ_6PFGcVIgcwvq7bA',
   authDomain: 'bubble-b3d30.firebaseapp.com',
   projectId: 'bubble-b3d30',

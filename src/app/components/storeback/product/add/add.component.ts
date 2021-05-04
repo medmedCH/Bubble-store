@@ -14,10 +14,10 @@ import {AngularFireStorage} from '@angular/fire/storage';
 })
 export class AddComponent implements OnInit {
   cat: Categorie[] = [];
- produit:Product = new Product();
   submitted = false;
   file: any ;
-  img: any;
+   img:any;
+
 
   constructor(private afStorage: AngularFireStorage ,private categorieservice: CategorieService,private productservice:ProductService , private router: Router) { }
 
@@ -28,7 +28,6 @@ export class AddComponent implements OnInit {
     descriptionInput: new FormControl('', [Validators.required]),
     catego: new FormControl('', [Validators.required]),
     priceInput: new FormControl('', [Validators.required]),
-    imgg:new FormControl('', [Validators.required]),
   });
   get titreinput() {
     return this.productForm.get('titreinput');
@@ -45,24 +44,23 @@ export class AddComponent implements OnInit {
   get quantity() {
     return this.productForm.get('quantity');
   }
-  get imgg() {
-    return this.productForm.get('imgg');
-  }
+
 
   upload($event: any) :void {
     this.file = $event.target.files[0];
+    console.log(this.file);
     const reader = new FileReader();
     reader.readAsDataURL(this.file);
     // tslint:disable-next-line:variable-name
     reader.onload = (_event) => {
       this.img = reader.result;
+
     };
 
   }
 
 
   addproduct() {
-
     const randomId = Math.random().toString(36).substring(2);
     const ref = this.afStorage.ref(randomId);
     const task = ref.put(this.file);
@@ -70,22 +68,29 @@ export class AddComponent implements OnInit {
       a.ref.getDownloadURL().then(value => {
         console.log(value);
         this.img = value;
+        const product = {
+
+          title: this.titreinput.value,
+          description: this.descriptionInput.value,
+          quantity:this.quantity.value,
+          categoryId:this.catego.value,
+          price: this.priceInput.value,
+          imgpr:value
+        };
+
+        console.log(product)
+        console.log()
+
+        if(this.productForm.valid) {
+          this.productservice.addproduct(product).subscribe(data=>'Bien');
+          this.router.navigateByUrl('/storeback/product/show');
+        }else return this.router.navigateByUrl('storeback/product/add');
       });
+
     });
 
-    const product = {
 
-      title: this.titreinput.value,
-      description: this.descriptionInput.value,
-      quantity:this.quantity.value,
-      categoryId:this.catego.value,
-      price: this.priceInput.value,
-      imageprincipale:this.imgg.value
-    };
-    if(this.productForm.valid) {
-    this.productservice.addproduct(product).subscribe(data=>'Bien');
-      this.router.navigateByUrl('/storeback/product/show');
-    }else return this.router.navigateByUrl('storeback/product/add');
+
 
   }
 
