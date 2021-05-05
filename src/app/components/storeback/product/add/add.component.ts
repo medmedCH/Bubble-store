@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CategorieService} from '../../../../services/categorie.service';
 import {Categorie} from '../../../../Models/Categorie';
-import {Product} from '../../../../Models/Product';
 import {ProductService} from '../../../../services/product.service';
 import {Router} from '@angular/router';
 import {AngularFireStorage} from '@angular/fire/storage';
@@ -88,7 +87,6 @@ export class AddComponent implements OnInit {
       });
 
     });
-
 
 
 

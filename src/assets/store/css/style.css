@@ -775,7 +775,8 @@ input[type="submit"]:hover, button[type=submit]:hover {background-color: #222}
     display: none;
 }
 .product-main-img {
-    margin-bottom: 20px;
+    margin-bottom: 350px;
+
 }
 .product-gallery {
     margin-bottom: 25px;

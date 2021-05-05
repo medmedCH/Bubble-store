@@ -12,10 +12,10 @@ import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import {environment} from '../environments/environment';
-import { StorebackComponent } from './components/storeback/storeback.component';
 import {StorebackModule} from './components/storeback/storeback.module';
 import {AngularFireStorageModule} from '@angular/fire/storage'
 import {AngularFireModule} from '@angular/fire'
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -46,6 +46,7 @@ export function kcInitializer(keycloak: KeycloakService): () => Promise<any> {
   imports: [
     KeycloakAngularModule,
     ROUTING,
+    NgbModule,
     RouterModule,
     BrowserModule,
     StoreModule,

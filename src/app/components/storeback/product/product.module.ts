@@ -8,7 +8,7 @@ import {CommonModule} from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AddComponent } from './add/add.component';
 import { AccueilComponent } from './accueil/accueil.component';
-import { ShowComponent } from './show/show.component';
+import {NgbdModalContent, ShowComponent} from './show/show.component';
 
 
 
@@ -27,11 +27,12 @@ import { ShowComponent } from './show/show.component';
   declarations: [
     AddComponent,
     AccueilComponent,
-    ShowComponent
+    ShowComponent,
+    NgbdModalContent
   ],
   providers: [],
   exports: [],
   bootstrap: [],
-  entryComponents: []
+  entryComponents: [NgbdModalContent]
 })
 export class ProductModule { }

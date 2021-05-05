@@ -6,20 +6,23 @@
     <th scope="col">Description</th>
     <th scope="col">Prix</th>
     <th scope="col">Quantité </th>
+    <th scope="col">Image </th>
     <th scope="col">Modifier</th>
     <th scope="col">Supprimer</th>
-
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let x of prod">
     <td>{{x.title}}</td>
-    <td>{{x.description}}</td>
-    <td>{{x.price}}</td>
-    <td>{{x.quantity}}</td>
-    <td> <button class="btn btn-primary" ><i class="far fa-edit"></i></button></td>
-    <td> <button class="btn btn-danger"  ><i class="far fa-trash-alt"></i></button></td>
+    <td style="width:120px;height:200px">{{x.description}} </td>
+    <td style="width:120px;height:200px">{{x.price}}</td>
+    <td style="width:120px;height:200px">{{x.quantity}}</td>
+    <td><img src="{{x.imgpr}}" style="width:120px;height:200px"></td>
+
+    <td style="width:120px;height:200px"> <button class="btn btn-primary" (click)="open(x.id)" ><i class="far fa-edit"></i></button></td>
+    <td style="width:120px;height:200px"> <button class="btn btn-danger"   (click)="deleteprdd(x.id)"><i class="far fa-trash-alt"></i></button></td>
 
   </tr>
   </tbody>
 </table>
+<h4 *ngIf="prod.length==0" class="hhh">LA LISTE DU PRODUIT EST VIDE .</h4>

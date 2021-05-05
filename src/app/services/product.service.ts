@@ -15,4 +15,10 @@ export class ProductService {
   getproducts(){
     return this.http.get<Product[]>('api/products');
   }
+  getproductbyid(id){
+    return this.http.get<Product>('api/products/'+id);
+  }
+  deleteprd(id){
+    return this.http.delete<Product>('api/products/'+id)
+  }
 }
