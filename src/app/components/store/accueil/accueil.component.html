@@ -11,7 +11,7 @@
 
         <div class="single-sidebar" >
           <div class="form-check" *ngFor="let x of cat" >
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (click)="open(x.id)">
             <h6  >{{x.name}} </h6>
           </div>
         </div>
@@ -22,7 +22,7 @@
         <div class="container">
           <div class="row">
 
-            <div class="col col-xl-4 col-lg-6 col-md-6 col-sm-6 col-8" *ngFor="let x of prd">
+            <div class="col col-xl-4 col-lg-6 col-md-6 col-sm-6 col-8" *ngFor="let x of prds">
               <div class="ui-block" data-mh="friend-groups-item">
                 <div class="single-product">
                   <div class="product-f-image">

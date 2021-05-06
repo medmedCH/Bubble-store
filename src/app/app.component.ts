@@ -1,4 +1,5 @@
 import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
+declare const mytest: any;
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ export class AppComponent implements AfterViewInit , OnInit  {
 
   constructor() {
   }
+
   ngOnInit(): void {
 
     // @ts-ignore

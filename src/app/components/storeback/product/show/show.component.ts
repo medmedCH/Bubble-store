@@ -14,54 +14,75 @@ import {CategorieService} from '../../../../services/categorie.service';
 })
 
 // tslint:disable-next-line:component-class-suffix
-export class NgbdModalContent {
+export class NgbdModalContent implements OnInit{
   @Input() prd;
+  cat: Categorie[] = [];
+  file: any ;
+  img:any;
 
-  constructor(public activeModal: NgbActiveModal) {
+  constructor(public activeModal: NgbActiveModal , private categorieservice:CategorieService , private productservice:ProductService) {
+  }
+  productform = new FormGroup({
+
+    titre: new FormControl('', [Validators.required]),
+    ds: new FormControl('', [Validators.required]),
+    pr: new FormControl('', [Validators.required]),
+    catt: new FormControl('', [Validators.required]),
+    qte: new FormControl('', [Validators.required]),
+  });
+
+  ngOnInit() {
+    this.categorieservice.getcat().subscribe(data => {
+      this.cat = data;
+    });
   }
 
-  /*OffreForm = new FormGroup({
-    ds: new FormControl('', [Validators.required]),
-    nameInput: new FormControl('', [Validators.required]),
-    tr: new FormControl('', [Validators.required]),
-    oft: new FormControl('', [Validators.required]),
-    av: new FormControl('', [Validators.required]),
-  });*/
-
-
-  /*get nameInput() {
-    return this.OffreForm.get('nameInput');
+  get titre() {
+    return this.productform.get('titre');
   }
 
   get ds() {
-    return this.OffreForm.get('ds');
+    return this.productform.get('ds');
+  }
+  get pr() {
+    return this.productform.get('pr');
+  }
+  get catt() {
+    return this.productform.get('catt');
   }
 
-  get oft() {
-    return this.OffreForm.get('oft');
+  get qte() {
+    return this.productform.get('qte');
   }
 
-  get av() {
-    return this.OffreForm.get('av');
+  upload($event: any) :void {
+    this.file = $event.target.files[0];
+    console.log(this.file);
+    const reader = new FileReader();
+    reader.readAsDataURL(this.file);
+    // tslint:disable-next-line:variable-name
+    reader.onload = (_event) => {
+      this.img = reader.result;
+
+    };
+
   }
 
-  get tr() {
-    return this.OffreForm.get('tr');
-  }*/
 
 
- /* updateOff(id: number) {
-    const obj: Offre = this.prd;
-    obj.name = this.OffreForm.value.nameInput === '' ? this.off.name : this.OffreForm.value.nameInput;
-    obj.description = this.OffreForm.value.ds === '' ? obj.description : this.OffreForm.value.ds;
-    obj.offtype = this.OffreForm.value.oft === '' ? obj.offtype : this.OffreForm.value.oft;
-    obj.avantages = this.OffreForm.value.av === '' ? obj.avantages : this.OffreForm.value.av;
-    obj.tarification = this.OffreForm.value.tr === '' ? obj.tarification : this.OffreForm.value.tr;
+  updateprd(id: number) {
+    const obj: Product = this.prd;
+    obj.title = this.productform.value.titre === '' ? this.prd.titre : this.productform.value.titre;
+    obj.description = this.productform.value.ds === '' ? obj.description : this.productform.value.ds;
+    obj.price = this.productform.value.pr === '' ? obj.price : this.productform.value.pr;
+    obj.categoryId = this.productform.value.catt === '' ? obj.categoryId : this.productform.value.catt;
+    obj.quantity = this.productform.value.qte === '' ? obj.quantity : this.productform.value.qte;
+   // obj.imgpr = this.productform.value.tr === '' ? obj.tarification : this.productform.value.tr;
 
-    this.offreService.modifier(obj).subscribe(data => data);
+    this.productservice.updateprd(id,obj).subscribe(data => data);
     this.activeModal.close('Close click');
     window.location.reload();
-  }*/
+  }
 }
 
 
@@ -78,24 +99,22 @@ export class NgbdModalContent {
 export class ShowComponent implements OnInit {
   prod:Product[]=[];
   prd:Product;
-  cat: Categorie[] = [];
 
-  constructor(private productservice:ProductService, private categorieservice:CategorieService,private modalService: NgbModal) { }
+  constructor(private productservice:ProductService,private modalService: NgbModal) { }
 
   ngOnInit() {
     this.productservice.getproducts().subscribe(data => {
       this.prod = data;
     });
-    this.categorieservice.getcat().subscribe(data => {
-      this.cat = data;
-    });
+
   }
 
   open(id: number) {
     const modalRef = this.modalService.open(NgbdModalContent);
     this.productservice.getproductbyid(id).subscribe(data => {
+      this.prd=data;
      console.log('produit à modifier= ')
-      console.log(data)
+      console.log(this.prd)
      modalRef.componentInstance.prd = data;
     });
   }

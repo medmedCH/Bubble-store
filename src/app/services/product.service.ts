@@ -19,6 +19,12 @@ export class ProductService {
     return this.http.get<Product>('api/products/'+id);
   }
   deleteprd(id){
-    return this.http.delete<Product>('api/products/'+id)
+    return this.http.delete<Product>('api/products/'+id);
+  }
+  updateprd(id,p:Product){
+    return this.http.put('api/products/'+id,p);
+  }
+  getproductsbycat(id){
+    return this.http.get<Product>('api/products/category/'+id);
   }
 }

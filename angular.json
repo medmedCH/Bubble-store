@@ -37,6 +37,9 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "src/assets/js/libs/jquery.appear.js",
+              "src/assets/js/zoomsl.js",
+              "src/assets/js/zoomin.js",
+              "src/assets/js/nextimg.js",
               "src/assets/js/libs/jquery.mousewheel.js",
               "src/assets/js/libs/perfect-scrollbar.js",
               "src/assets/js/libs/jquery.matchHeight.js",
