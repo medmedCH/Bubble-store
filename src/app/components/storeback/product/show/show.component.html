@@ -4,6 +4,7 @@
   <tr>
     <th scope="col">Titre</th>
     <th scope="col">Description</th>
+    <th scope="col">Catégorie</th>
     <th scope="col">Prix</th>
     <th scope="col">Quantité </th>
     <th scope="col">Image </th>
@@ -15,6 +16,7 @@
   <tr *ngFor="let x of prod">
     <td>{{x.title}}</td>
     <td style="width:120px;height:200px">{{x.description}} </td>
+    <td>{{x.categoryId}}</td>
     <td style="width:120px;height:200px">{{x.price}}</td>
     <td style="width:120px;height:200px">{{x.quantity}}</td>
     <td><img src="{{x.imgpr}}" style="width:120px;height:200px"></td>

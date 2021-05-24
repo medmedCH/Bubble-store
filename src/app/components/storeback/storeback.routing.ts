@@ -7,10 +7,12 @@ import {StorebackComponent} from './storeback.component';
 
 const routes: Routes = [
   {
-    path: 'storeback',
+    path: 'storeback/strback',
     component: StorebackComponent,
     children: [
       {path: 'product', loadChildren: './product/product.module#ProductModule'},
+      {path: 'cat', loadChildren: './category/category.module#CategoryModule'},
+
     ]
   },
 ];

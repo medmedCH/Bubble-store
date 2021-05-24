@@ -11,7 +11,7 @@ const routes: Routes = [
     component: StoreComponent,
     children: [
       { path: 'accueil',      component: AccueilComponent },
-      { path: 'detail',      component: DetailproduitComponent },
+      { path: 'detail/:id',      component: DetailproduitComponent },
       { path: 'panier',      component: CartComponent },
 
 

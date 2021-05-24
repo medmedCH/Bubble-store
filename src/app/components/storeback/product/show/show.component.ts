@@ -15,7 +15,7 @@ import {CategorieService} from '../../../../services/categorie.service';
 
 // tslint:disable-next-line:component-class-suffix
 export class NgbdModalContent implements OnInit{
-  @Input() prd;
+  @Input() prd:Product;
   cat: Categorie[] = [];
   file: any ;
   img:any;
@@ -72,11 +72,11 @@ export class NgbdModalContent implements OnInit{
 
   updateprd(id: number) {
     const obj: Product = this.prd;
-    obj.title = this.productform.value.titre === '' ? this.prd.titre : this.productform.value.titre;
-    obj.description = this.productform.value.ds === '' ? obj.description : this.productform.value.ds;
-    obj.price = this.productform.value.pr === '' ? obj.price : this.productform.value.pr;
-    obj.categoryId = this.productform.value.catt === '' ? obj.categoryId : this.productform.value.catt;
-    obj.quantity = this.productform.value.qte === '' ? obj.quantity : this.productform.value.qte;
+    obj.title = this.productform.value.titre === '' ? this.prd.title : this.productform.value.titre;
+    obj.description = this.productform.value.ds === '' ? this.prd.description : this.productform.value.ds;
+    obj.price = this.productform.value.pr === '' ? this.prd.price : this.productform.value.pr;
+    obj.categoryId = this.productform.value.catt === '' ? this.prd.categoryId : this.productform.value.catt;
+    obj.quantity = this.productform.value.qte === '' ? this.prd.quantity : this.productform.value.qte;
    // obj.imgpr = this.productform.value.tr === '' ? obj.tarification : this.productform.value.tr;
 
     this.productservice.updateprd(id,obj).subscribe(data => data);

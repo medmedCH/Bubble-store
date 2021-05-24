@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {KeycloakService} from 'keycloak-angular';
+import {CartService} from '../../../services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +9,9 @@ import {KeycloakService} from 'keycloak-angular';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
+
   username='';
-  constructor(private ks :KeycloakService,private elementRef: ElementRef, private router: Router) {}
+  constructor(private ks :KeycloakService ) {}
 
   ngAfterViewInit() {
   /* const s = document.createElement('script');
@@ -17,15 +19,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
    this.elementRef.nativeElement.appendChild(s);*/
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.getuserinfo();
     this.getuserole();
-    console.log(this.ks.getToken());
-    console.log('role:',this.getuserole())
+
   }
 
  private getuserinfo(){
-   this.username=this.ks.getUsername();
+           this.username=this.ks.getUsername();
         }
   public getuserole(){
      if( this.ks.isUserInRole("admin"))
@@ -36,5 +37,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 Logout():void{
     this.ks.logout();
 }
+
 
 }

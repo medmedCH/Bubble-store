@@ -82,14 +82,11 @@ export class AddComponent implements OnInit {
 
         if(this.productForm.valid) {
           this.productservice.addproduct(product).subscribe(data=>'Bien');
-          this.router.navigateByUrl('/storeback/product/show');
+          this.router.navigateByUrl('/storeback/strback/product/show');
         }else return this.router.navigateByUrl('storeback/product/add');
       });
 
     });
-
-
-
   }
 
   ngOnInit() {

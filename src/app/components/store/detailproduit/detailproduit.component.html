@@ -1,41 +1,47 @@
+
 <div class="single-product-area">
   <div class="container">
     <div class="row">
 
 
-      <div class="col-md-8">
+      <div class="col-md-12">
         <div class="product-content-right">
 
 
           <div class="row">
             <div class="col-sm-8">
               <ul style="float: left" >
-
-                <li style="list-style-type: none;  margin-bottom: 10px;"> <img src="assets/store/img/product-1.jpg" class="small_img" style="width: 70px;height:70px" ></li>
-                <li style="list-style-type: none;  margin-bottom: 10px;"> <img src="assets/store/img/product-2.jpg" class="small_img" style="width: 70px;height:70px"></li>
-                <li style="list-style-type: none;  margin-bottom: 10px;"> <img src="assets/store/img/product-3.jpg" class="small_img" style="width: 70px;height:70px"></li>
+                <li style="list-style-type: none;  margin-bottom: 10px;"> <img src="{{prod.imgpr}}" class="small_img" style="width: 70px;height:70px;border: 1px solid black;border-radius: 4px; padding: 5px;" ></li>
+                <li style="list-style-type: none;  margin-bottom: 10px;"> <img src="assets/store/img/product-1.jpg" class="small_img" style="width: 70px;height:70px;border: 1px solid black;border-radius: 4px; padding: 5px;" ></li>
+                <li style="list-style-type: none;  margin-bottom: 10px;"> <img src="assets/store/img/PC_Gamer_No_l_2020_pas_cher_gaming.jpg" class="small_img" style="width: 70px;height:70px;border: 1px solid black;border-radius: 4px; padding: 5px;"></li>
+                <li style="list-style-type: none;  margin-bottom: 10px;"> <img src="assets/store/img/product-3.jpg" class="small_img" style="width: 70px;height:70px;border: 1px solid black;border-radius: 4px; padding: 5px;"></li>
+                <p class="textzoom">Passez la souris sur l'image pour zoomer</p>
 
               </ul>
-              <img src="assets/store/img/iphone12.png" class="big_img" style="  width: 300px;  height: 400px;  float: left;  margin-top: 20px;  margin-left: 75px;">
+
+
+              <img src="assets/store/img/edf2f6.png" class="big_img" style="  width: 300px;  height: 400px;  float: left;  margin-top: -30px;  margin-left: 5px;">
             </div>
 
             <div class="col-sm-4">
               <div class="product-inner">
-                <h5 class="product-name">Sony Smart TV -aaaaaaaaaaaaaaaaaaaaaaaa 2015</h5>
+                <h5 class="product-name">{{prod.title}}</h5>
                 <div class="product-inner-price">
-                  <ins>$700.00</ins> <del>$100.00</del>
+                  Prix :<h3 class="prixx">{{prod.price}} €</h3>
                 </div>
-
+                <div class="product-inner-price">
+                <div *ngIf="prod.quantity>0; then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock><p class='dispo'>Disponible</p></ng-template>
+                <ng-template #elseBlock><p class='nondispo'>Actuellement indisponible.</p></ng-template>
+                </div>
                 <form action="" class="cart">
                <h6>Quantité:</h6>
-
                   <div class="quantity">
                     <input type="number" size="12" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                  <hr>
                   </div>
-
                   <button class="add_to_cart_button" type="submit"><i class="fa fa-shopping-cart"></i>   Ajouter au panier</button>
                 </form>
-
                 <div role="tabpanel">
                   <hr>
                   <ul class="product-tab" role="tablist">
@@ -79,4 +85,3 @@
     </div>
   </div>
 </div>
-

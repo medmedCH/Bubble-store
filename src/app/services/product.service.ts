@@ -25,6 +25,6 @@ export class ProductService {
     return this.http.put('api/products/'+id,p);
   }
   getproductsbycat(id){
-    return this.http.get<Product>('api/products/category/'+id);
+    return this.http.get<Product[]>('api/products/category/'+id);
   }
 }

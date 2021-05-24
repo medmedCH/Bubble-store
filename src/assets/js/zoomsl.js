@@ -5,7 +5,7 @@
 
     $.fn.imagezoomsl = function (options) {
         options = options || {};
-        return this.each(function () { //return jQuery obj		
+        return this.each(function () { //return jQuery obj
             if (!$(this).is("img")) return true;
             var that = this;
             setTimeout(function () {
@@ -34,8 +34,8 @@
             cursorshadecolor: '#fff', // цвет контейнера лупы в формате CSS
             cursorshadeopacity: 0.3, // прозрачность контейнера лупы
             cursorshadeborder: '1px solid black', // внешний бордюра контейнера лупы в формате CSS
-            zindex: '', // z-index контейнера лупы 
-            stepzoom: 0.5, // шаг зуммирования при прокрутке колеса мыши					
+            zindex: '', // z-index контейнера лупы
+            stepzoom: 0.5, // шаг зуммирования при прокрутке колеса мыши
             zoomrange: [2, 2], // диапазон зуммирования
             zoomstart: 2, // стартовая установка зуммирования
             disablewheel: true, // отключить прокрутку документа колесом мыши когда курсор над картинкой tmb в случае если не задан диапазон зуммирования
@@ -53,11 +53,11 @@
 
             // контейнер big картинки (magnifier)
             magnifierpos: 'right', // сторона отображения контейнера left/right
-            magnifiersize: [0, 0], // размер контейнера  
+            magnifiersize: [0, 0], // размер контейнера
             magnifiereffectanimate: 'showIn', // эффект появления/скрытия fadeIn/showIn/slideIn
             innerzoom: false, // показать контейнер внутри tmb
             innerzoommagnifier: false, // показать контейнер как лупу
-            descarea: false, // показать контейнер в произвольной области, область descarea должна иметь width и height				
+            descarea: false, // показать контейнер в произвольной области, область descarea должна иметь width и height
             leftoffset: 15, // отступ слева от tmb картинки
             rightoffset: 15, // отступ справа от tmb картинки
             switchsides: true, // учитывать край экрана
@@ -73,7 +73,7 @@
             // коэффициенты скорости анимации
             scrollspeedanimate: 5 /*4*/ , // прокрутки big картинки
             zoomspeedanimate: 7, // зуммирования (плавность)
-            loopspeedanimate: 2.5 /*2.45342*/ , // перемещения области лупы и big контейнера в режиме лупы				
+            loopspeedanimate: 2.5 /*2.45342*/ , // перемещения области лупы и big контейнера в режиме лупы
             magnifierspeedanimate: 350, // показа big контейнера
 
 
@@ -246,7 +246,7 @@
                         left: left1,
                         top: top1 + height
                     });
-            } // */			
+            } // */
 
             if (specs.setting.innerzoom) {
 
@@ -692,7 +692,7 @@
             $tracker.data("largeimage", setting.largeimage);
 
 
-            // EVENTS			
+            // EVENTS
             $(window).bind("resize", function () {
                 var o = $img.offsetsl();
                 if ($tracker.data("loadimgevt"))

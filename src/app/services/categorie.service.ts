@@ -9,6 +9,9 @@ import {Categorie} from '../Models/Categorie';
 export class CategorieService {
   constructor(private http: HttpClient) {
   }
+  addcat(cat){
+    return this.http.post<Categorie>('/api/categories',cat);
+  }
 
    getcat()  {
     return   this.http.get<Categorie[]>('/api/categories');
