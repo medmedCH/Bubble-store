@@ -9,5 +9,22 @@
   font-weight: 800;
   padding-top: 0px;
   padding-bottom: 50px;
+}
+.titlee{
+  color: black;
+  font-weight: 900;
 
 }
+.clicc{
+cursor: pointer;
+}
+
+.prrr{
+  color: black;
+}
+p.dispo{
+  color: #058552!important;
+  font-weight: 900;}
+p.nondispo{
+  color: red;
+  font-weight: 900;}

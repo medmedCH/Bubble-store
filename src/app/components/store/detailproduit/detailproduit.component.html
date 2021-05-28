@@ -2,12 +2,8 @@
 <div class="single-product-area">
   <div class="container">
     <div class="row">
-
-
       <div class="col-md-12">
         <div class="product-content-right">
-
-
           <div class="row">
             <div class="col-sm-8">
               <ul style="float: left" >
@@ -16,13 +12,9 @@
                 <li style="list-style-type: none;  margin-bottom: 10px;"> <img src="assets/store/img/PC_Gamer_No_l_2020_pas_cher_gaming.jpg" class="small_img" style="width: 70px;height:70px;border: 1px solid black;border-radius: 4px; padding: 5px;"></li>
                 <li style="list-style-type: none;  margin-bottom: 10px;"> <img src="assets/store/img/product-3.jpg" class="small_img" style="width: 70px;height:70px;border: 1px solid black;border-radius: 4px; padding: 5px;"></li>
                 <p class="textzoom">Passez la souris sur l'image pour zoomer</p>
-
               </ul>
-
-
               <img src="assets/store/img/edf2f6.png" class="big_img" style="  width: 300px;  height: 400px;  float: left;  margin-top: -30px;  margin-left: 5px;">
             </div>
-
             <div class="col-sm-4">
               <div class="product-inner">
                 <h5 class="product-name">{{prod.title}}</h5>
@@ -34,13 +26,13 @@
                 <ng-template #thenBlock><p class='dispo'>Disponible</p></ng-template>
                 <ng-template #elseBlock><p class='nondispo'>Actuellement indisponible.</p></ng-template>
                 </div>
-                <form action="" class="cart">
+                <form  class="cart" [formGroup]="qteForm">
                <h6>Quantité:</h6>
                   <div class="quantity">
-                    <input type="number" size="12" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                    <input type="number" size="12" class="input-text qty text" title="Qty"  name="quantity" min="1" max="{{prod.quantity}}" step="1" onkeyup="if(this.value<0){this.value= this.value * -1}" onkeypress='return event.charCode >= 48 && event.charCode <= 57 '  formControlName="quantity">
                   <hr>
                   </div>
-                  <button class="add_to_cart_button" type="submit"><i class="fa fa-shopping-cart"></i>   Ajouter au panier</button>
+                  <button (click)="addorderitems()"   class="add_to_cart_button" type="submit" [disabled]="disabled"> <i class="fa fa-shopping-cart"></i>   Ajouter au panier</button>
                 </form>
                 <div role="tabpanel">
                   <hr>

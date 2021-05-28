@@ -40,6 +40,8 @@ export class AccueilComponent implements OnInit {
       console.log(qq)
     });
     const decodedToken = helper.decodeToken(await this.ks.getToken());
+    this.cartt=await this.getcartactive();
+    console.log(this.cartt);
     if (await this.havecart()) {}
     else{
         await this.cartservice.addcartuser(decodedToken.sub).toPromise();
@@ -47,8 +49,6 @@ export class AccueilComponent implements OnInit {
      if(await this.haveordercartt()===true){}
       else{
         console.log('fff')
-       this.cartt=await this.getcartactive();
-        console.log(this.cartt);
         const ord={
           cart:this.cartt
 

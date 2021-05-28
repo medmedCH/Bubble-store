@@ -31,8 +31,10 @@
                   <div class="product-f-image">
                     <img src="{{x.imgpr}}" alt="{{x.title}}" style="margin-left:45px;width:120px;height:250px">
                     <div class="product-hover">
+<!--
                       <a routerLink='/store/panier' class="add-to-cart-link">AJOUTER AU <i class="fa fa-shopping-cart"></i></a>
-                      <a  [routerLink]="[ '/store/detail',x.id]" class="view-details-link"><i class="fa fa-link" ></i> Détails</a>
+-->
+                      <a  [routerLink]="[ '/store/detail',x.id,cartt.id]" class="view-details-link"><i class="fa fa-link" ></i> Détails</a>
                     </div>
                   </div>
                   <h2 style="margin-left: 40px">{{x.title.substr(0,15)}}</h2>

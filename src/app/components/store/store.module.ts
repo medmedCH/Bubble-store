@@ -6,15 +6,17 @@ import { DetailproduitComponent } from './detailproduit/detailproduit.component'
 import { CartComponent } from './cart/cart.component';
 import {CategorieService} from '../../services/categorie.service';
 import {CommonModule} from '@angular/common';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 
 @NgModule({
-  imports: [
-    StoreRouting,
-    CommonModule,
+    imports: [
+        StoreRouting,
+        CommonModule,
+        ReactiveFormsModule,
 
-  ],
+    ],
   declarations: [
     AccueilComponent, StoreComponent, DetailproduitComponent, CartComponent
   ],

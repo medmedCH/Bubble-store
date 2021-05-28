@@ -1,9 +1,10 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Product} from '../../../Models/Product';
 import {ProductService} from '../../../services/product.service';
+import {OrderService} from '../../../services/order.service';
+import {Order} from '../../../Models/Order';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 declare const mytest: any;
 declare const aaaaa: any;
 
@@ -14,16 +15,38 @@ declare const aaaaa: any;
 })
 export class DetailproduitComponent implements OnInit{
   prod:Product;
-
-  constructor(private productservice:ProductService, private route: ActivatedRoute ) {}
-  ngOnInit() {
+  prd:Product;
+ order:Order;
+ disabled:boolean;
+ constructor(private productservice:ProductService, private route: ActivatedRoute ,private  orderservice:OrderService , private router: Router) {}
+  qteForm = new FormGroup({
+    quantity: new FormControl('1', [Validators.required]),
+  });
+  get quantity() {
+    return this.qteForm.get('quantity');
+  }
+  async ngOnInit() {
     mytest();
     aaaaa();
-    this.productservice.getproductbyid(this.route.snapshot.params.id).subscribe(data => {
-      this.prod=data;
-      console.log('produit')
-      console.log(this.prod);
-    })
+    this.prod=await this.productservice.getproductbyid(this.route.snapshot.paramMap.get('idprd')).toPromise();
+    this.order=await this.orderservice.getuserorder(this.route.snapshot.paramMap.get('idcart')).toPromise();
+    console.log('order',this.order.cart,'produit=',this.prod);
+   if(this.prod.quantity===0){
+     this.disabled=true
+   } else
+     this.disabled=false;
+  }
+  async addorderitems(){
+    const orderitem={
+      orderId:this.order.id,
+      product:this.prod,
+      quantity:this.quantity.value,
+    }
+    if(this.qteForm.valid) {
+      this.orderservice.addorderitemss(orderitem)
+        .subscribe(data=>'Bien');
+      this.router.navigateByUrl('/store/panier');
+    }
   }
 
 
