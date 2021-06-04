@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CategorieService} from '../../../../services/categorie.service';
 import {Categorie} from '../../../../Models/Categorie';
 import {ProductService} from '../../../../services/product.service';
 import {Router} from '@angular/router';
 import {AngularFireStorage} from '@angular/fire/storage';
+import {Product} from '../../../../Models/Product';
 
 @Component({
   selector: 'app-add',
@@ -15,9 +16,11 @@ export class AddComponent implements OnInit {
   cat: Categorie[] = [];
   submitted = false;
   file: any ;
-   img:any;
-
-
+  filee:string;
+  myfiles:string[]=[];
+  urls=[];
+  img:any;
+  prod:Product;
   constructor(private afStorage: AngularFireStorage ,private categorieservice: CategorieService,private productservice:ProductService , private router: Router) { }
 
 
@@ -27,6 +30,8 @@ export class AddComponent implements OnInit {
     descriptionInput: new FormControl('', [Validators.required]),
     catego: new FormControl('', [Validators.required]),
     priceInput: new FormControl('', [Validators.required]),
+    devise:new FormControl('', [Validators.required]),
+    images:new FormControl('', [Validators.required]),
   });
   get titreinput() {
     return this.productForm.get('titreinput');
@@ -43,11 +48,17 @@ export class AddComponent implements OnInit {
   get quantity() {
     return this.productForm.get('quantity');
   }
-
+  get devise() {
+    return this.productForm.get('devise');
+  }
+  get images() {
+    return this.productForm.get('images');
+  }
 
   upload($event: any) :void {
     this.file = $event.target.files[0];
-    console.log(this.file);
+    console.log('qq',this.file);
+
     const reader = new FileReader();
     reader.readAsDataURL(this.file);
     // tslint:disable-next-line:variable-name
@@ -57,12 +68,41 @@ export class AddComponent implements OnInit {
     };
 
   }
-
+  upload1(event)  {
+   for (let i=0;i<3;i++){
+    this.filee=event.target.files[i];
+    this.myfiles.push(event.target.files[i]);
+    this.productForm.get('images').setValue(this.myfiles);
+   }
+     console.log(this.myfiles[0]);
+    }
 
   addproduct() {
     const randomId = Math.random().toString(36).substring(2);
+    const randomId1= Math.random().toString(36).substring(2);
+    const randomId2= Math.random().toString(36).substring(2);
+    const randomId3= Math.random().toString(36).substring(2);
+
     const ref = this.afStorage.ref(randomId);
+    const ref1= this.afStorage.ref(randomId1);
+    const ref2= this.afStorage.ref(randomId2);
+    const ref3= this.afStorage.ref(randomId3);
     const task = ref.put(this.file);
+    const task1 = ref1.put(this.myfiles[0])
+    const task2 = ref2.put(this.myfiles[1])
+    const task3 = ref3.put(this.myfiles[2])
+    task1.then(b=>{
+      b.ref.getDownloadURL().then(value1=>{
+        console.log('images1:',value1);
+        this.myfiles[0]=value1;
+    task2.then(c=>{
+          c.ref.getDownloadURL().then(value2=>{
+            console.log('images1:',value2);
+            this.myfiles[1]=value2;
+    task3.then(d=>{
+              d.ref.getDownloadURL().then(value3=>{
+                console.log('images1:',value3);
+                this.myfiles[2]=value3;
     task.then(a => {
       a.ref.getDownloadURL().then(value => {
         console.log(value);
@@ -72,35 +112,39 @@ export class AddComponent implements OnInit {
           title: this.titreinput.value,
           description: this.descriptionInput.value,
           quantity:this.quantity.value,
-          categoryId:this.catego.value,
+          category:this.catego.value,
           price: this.priceInput.value,
-          imgpr:value
+          imgpr:value,
+          images1:value1,
+          images2:value2,
+          images3:value3,
+          devise:this.devise.value,
         };
 
         console.log(product)
-        console.log()
+        console.log('category',this.catego.value)
 
         if(this.productForm.valid) {
           this.productservice.addproduct(product).subscribe(data=>'Bien');
-          this.router.navigateByUrl('/storeback/strback/product/show');
-        }else return this.router.navigateByUrl('storeback/product/add');
+          this.router.navigateByUrl('storeback/strbackkk/product/show');
+        }else return this.router.navigateByUrl('storeback/strbackkk/product/add');
       });
-
+    })
+    });
+    });
+      });
+    });
+      });
     });
   }
-
   ngOnInit() {
     this.categorieservice.getcat().subscribe(data => {
       this.cat = data;
     });
   }
-
   onReset() {
     this.submitted = false;
     this.productForm.reset();
+    this.img=null;
   }
-
-
-
-
 }

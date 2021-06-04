@@ -2,10 +2,10 @@ import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {NgbdModalContent, ShowComponent} from '../product/show/show.component';
 import {AddctComponent} from './addct/addct.component';
 import {CategoryRouting} from './category.routing';
 import { AccueilComponent } from './accueil/accueil.component';
+import { ShowComponent } from './show/show.component';
 
 
 @NgModule({
@@ -21,11 +21,12 @@ import { AccueilComponent } from './accueil/accueil.component';
 
   declarations: [
     AddctComponent,
-    AccueilComponent
+    AccueilComponent,
+    ShowComponent
   ],
   providers: [],
   exports: [],
   bootstrap: [],
-  entryComponents: [NgbdModalContent]
+  entryComponents: []
 })
 export class CategoryModule { }

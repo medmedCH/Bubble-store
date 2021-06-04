@@ -28,3 +28,8 @@ p.dispo{
 p.nondispo{
   color: red;
   font-weight: 900;}
+.vl{
+  border-left: 1px solid black;
+  margin: 0 -1px;
+height: 75px;
+}

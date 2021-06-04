@@ -1,7 +1,7 @@
 <div class="divv">
 
-  <button type="button" class="btn btn-primary btn-sm" routerLink="/storeback/strback/product/add">Ajouter Produit</button>
-  <button type="button" class="btn btn-primary btn-sm" routerLink="/storeback/strback/product/show">Tous Les Produits</button>
+  <button type="button" class="btn btn-primary btn-sm" routerLink="/storeback/strbackkk/product/add">Ajouter Produit</button>
+  <button type="button" class="btn btn-primary btn-sm" routerLink="/storeback/strbackkk/product/show">Tous Les Produits</button>
 </div>
 <hr class="hr">
 <div class="container-add" class="cssdiv">
@@ -47,7 +47,7 @@
 
           <select class="form-control" id="exampleFormControlSelect1" name="categoryId" formControlName="catego" class="cc">
             <option >Choisir Une Catégorie</option>
-            <option *ngFor="let x of cat"  value="{{x.id}}" class="opt" >{{x.name}}  </option>
+            <option *ngFor="let x of cat"  [ngValue]="x" class="opt" >{{x.name}}  </option>
           </select>
           <div *ngIf="catego.invalid && catego.touched" class="alert alert-danger">
             <div *ngIf=" catego.touched && catego.errors.required">Catégorie obligatoire </div>
@@ -58,42 +58,52 @@
 
     <div class="form-group row"  >
       <label for="inputPrice" class="col-sm-2 col-form-label">Prix</label>
-      <div class="col-sm-10">
+      <div class="col-sm-8">
         <input type="text" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"  class="form-control" id="inputPrice" placeholder="Prix" formControlName="priceInput" class="cc">
         <div *ngIf="priceInput.invalid && priceInput.touched" class="alert alert-danger">
           <div *ngIf=" priceInput.touched && priceInput.errors.required">Prix Obligatoire</div>
         </div>
       </div>
+      <div class="col-sm-2">
+      <select class="form-control" id="example" name="categoryId" formControlName="devise" class="cc">
 
+        <option value="Dollar">$</option>
+        <option value="DT">DT</option>
+        <option value="Euro">€</option>
+        <option value="Bubble_Coin">Bubble-Coin</option>
+      </select>
+        <div *ngIf="devise.invalid && devise.touched" class="alert alert-danger">
+          <div *ngIf=" devise.touched && devise.errors.required">Devise obligatoire </div>
+        </div>
+      </div>
     </div>
 
     <div class="form-group row"  >
-      <label for="inputPrice" class="col-sm-2 col-form-label">Image  </label>
-
+      <label for="" class="col-sm-2 col-form-label">Image Principale:</label>
       <div class="col-sm-10">
-        <label for="fileimg" class="bb"><i class="fas fa-plus"></i> Cover
+        <img *ngIf="img!=null" src="{{img}}" style="width:100px;height:100px;margin-left: 250px">
+        <label for="fileimg" class="bb"><i class="fas fa-plus"></i> Cove
           <input type="file" name="file" id="fileimg" style="display: none;"
-                 accept="image/*" #imageInput (change)="upload($event)" >
-
+                 accept="image/*" #imageInput (change)="upload($event)" #fileUploader />
         </label>
       </div>
-      <div class="col-sm-10">
-        <label for="fileimg" class="bb"><i class="fas fa-plus"></i> Cover
-          <input type="file" name="file" id="fileimg2" style="display: none;"
-                 accept="image/*" #imageInput (change)="upload($event)" >
-
-        </label>
-      </div>
-
-
     </div>
 
+    <div class="form-group row"  >
+      <label for="" class="col-sm-2 col-form-label">Images:</label>
+      <div class="col-sm-10">
 
+        <img *ngFor="let url of myfiles" src="{{url}}" style="width:100px;height:200px;margin-left: 250px">
 
-
+        <label for="fileimgs" class="bc"><i class="fas fa-plus"></i> <i class="fas fa-plus"></i><i class="fas fa-plus"></i>
+          <input type="file" name="images" id="fileimgs" style="display: none;"
+                 accept="image/*" #imageInput (change)="upload1($event)" multiple="" >
+        </label>
+      </div>
+    </div>
     <div  class="butt">
       <div class="col-sm-10">
-        <button type="button"  class="btn btn-primary" (click)="addproduct()"> Ajouter
+        <button type="button"  class="btn btn-primary"  (click)="addproduct()"> Ajouter
         </button>
         <button type="button" class="btn btn-primary"  (click)="onReset()">Annuler
         </button>

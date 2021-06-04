@@ -3,8 +3,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ProductRouting} from './product.routing';
 import {HttpClientModule} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
-
-
 import { NgModule } from '@angular/core';
 import { AddComponent } from './add/add.component';
 import { AccueilComponent } from './accueil/accueil.component';
@@ -28,7 +26,7 @@ import {NgbdModalContent, ShowComponent} from './show/show.component';
     AddComponent,
     AccueilComponent,
     ShowComponent,
-    NgbdModalContent
+    NgbdModalContent,
   ],
   providers: [],
   exports: [],

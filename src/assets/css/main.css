@@ -2749,9 +2749,9 @@ img {
 /*------------- #BLOCKS --------------*/
 /*------------- #UI-BLOCK --------------*/
 .ui-block {
-  background-color: #fff;
+  background-color: #edf2f6;
   border-radius: 5px;
-  border: 1px solid #f45b39;
+  border: 1px solid black;
   margin-bottom: 15px; }
   .ui-block .ui-block-title:last-child {
     border-bottom: 0; }

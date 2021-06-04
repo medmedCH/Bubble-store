@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {KeycloakService} from 'keycloak-angular';
 import {Router} from '@angular/router';
 import {CartService} from '../../../services/cart.service';
@@ -19,36 +19,44 @@ const helper = new JwtHelperService();
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+
   cart:Cart;
   order:Order;
   orderitems:Orderitem[];
+  orderitemss:boolean;
   products:Product[]=[];
   product:Product;
   orderitem:Orderitem;
-
+  disabled:boolean;
   constructor(private productservice:ProductService, private orderservice:OrderService,private ks :KeycloakService, private router: Router , private cartservice:CartService ) { }
   qteForm = new FormGroup({
     qte: new FormControl('', [Validators.required]),
   });
-    async ngOnInit() {
-      const decodedToken = helper.decodeToken(await this.ks.getToken());
-     this.cart= await this.cartservice.getactivecartuser(decodedToken.sub).toPromise();
-      this.order=await this.orderservice.getuserorder(this.cart.id).toPromise();
-      console.log('order:',this.order);
-     this.orderitems= await this.orderservice.getorderitemsperorder(this.order.id).toPromise();
-     console.log('orderitmes',this.orderitems);
-    }
 
+  async ngOnInit() {
+     this.loadcartprdperorder();
+  }
   deleteprdd(id: number) {
     if(confirm('êtes-vous sûr de vouloir supprimer ce produit ? ')) {
       this.orderservice.deleteorderitem(id).subscribe(data2=>'ok');
-      window.location.reload();
+      this.loadcartprdperorder();
     }
   }
-  updateorderitem(id: number) {
-    this.orderservice.updateorderitem(id,this.qteForm.value.qte).subscribe(data => data);
-    console.log('qté',this.qteForm.value.qte)
-    window.location.reload();
+  async loadcartprdperorder(){
+    const decodedToken = helper.decodeToken(await this.ks.getToken());
+    this.cart= await this.cartservice.getactivecartuser(decodedToken.sub).toPromise();
+    this.order=await this.orderservice.getuserorder(this.cart.id).toPromise();
+    this.orderitems= await this.orderservice.getorderitemsperorder(this.order.id).toPromise();
+    this.orderitemss=false;
+    // tslint:disable-next-line:prefer-for-of
+    for (let j = 0; j < this.orderitems.length; j++){
+      if (this.orderitems[j].product.quantity<=0){
+        this.orderitemss=true;
+      }
+    }
   }
-
+ async updateorderitem(id: number) {
+   await this.orderservice.updateorderitem(id,this.qteForm.value.qte).toPromise();
+    this.loadcartprdperorder();
+  }
 }

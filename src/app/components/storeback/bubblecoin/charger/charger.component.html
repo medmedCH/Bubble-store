@@ -1,0 +1,31 @@
+<h3 class="cpte">Charger Comptes </h3>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Nom</th>
+    <th scope="col">Prénom</th>
+    <th scope="col">Email</th>
+    <th scope="col">Image </th>
+    <th scope="col">Ajouter</th>
+    <th scope="col">Soldes</th>
+    <th scope="col">Supprimer</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let y of users">
+    <td>{{y.firstName}}</td>
+    <td >{{y.lastName}}</td>
+    <td >{{y.email}}</td>
+    <td><img src="" ></td>
+    <td > <button class="btn btn-primary"  ><i class="far fa-minus-circle"></i></button></td>
+    <td style="width: 10%">
+      <form  >
+       <input type="text"  class="montant" [defaultValue]="0">
+      </form>
+
+    </td>
+    <td > <button class="btn btn-danger"  ><i class="far fa-plus-circle"></i></button></td>
+
+  </tr>
+  </tbody>
+</table>

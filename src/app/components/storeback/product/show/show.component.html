@@ -15,8 +15,8 @@
   <tbody>
   <tr *ngFor="let x of prod">
     <td>{{x.title}}</td>
-    <td style="width:120px;height:200px">{{x.description}} </td>
-    <td>{{x.categoryId}}</td>
+    <td >{{x.description.substr(0,15)}}... </td>
+    <td>{{x.category.name}}</td>
     <td style="width:120px;height:200px">{{x.price}}</td>
     <td style="width:120px;height:200px">{{x.quantity}}</td>
     <td><img src="{{x.imgpr}}" style="width:120px;height:200px"></td>

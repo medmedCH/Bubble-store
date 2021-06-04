@@ -26,7 +26,6 @@ export class AccueilComponent implements OnInit {
   cartt:Cart;
   cat: Categorie[] = [];
   prds:Product[] = [];
-  res:Observable<boolean>;
   constructor(private orderservice:OrderService,private categorieservice: CategorieService,private productservice:ProductService , private router: Router,private ks :KeycloakService,  private cartservice:CartService) {}
   async ngOnInit() {
     this.categorieservice.getcat().subscribe(data => {
@@ -40,21 +39,20 @@ export class AccueilComponent implements OnInit {
       console.log(qq)
     });
     const decodedToken = helper.decodeToken(await this.ks.getToken());
-    this.cartt=await this.getcartactive();
-    console.log(this.cartt);
     if (await this.havecart()) {}
     else{
         await this.cartservice.addcartuser(decodedToken.sub).toPromise();
       }
      if(await this.haveordercartt()===true){}
       else{
-        console.log('fff')
-        const ord={
-          cart:this.cartt
-
-        }
-      await this.orderservice.addorder(ord).toPromise();
-      console.log('aaa')
+       this.cartt=await this.getcartactive();
+         console.log(this.cartt);
+         console.log('fff')
+         const ord = {
+           cart: this.cartt
+         }
+         await this.orderservice.addorder(ord).toPromise();
+         console.log('aaa')
     }
   }
   openall(){

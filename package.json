@@ -24,6 +24,7 @@
     "@auth0/angular-jwt": "^5.0.2",
     "@ng-bootstrap/ng-bootstrap": "^9.1.0",
     "angular-bootstrap-checkbox": "^0.5.0",
+    "file-drop-element": "^1.0.1",
     "firebase": "^8.4.3",
     "jquery": "^3.6.0",
     "keycloak-angular": "^8.1.0",

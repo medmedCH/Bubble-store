@@ -75,7 +75,7 @@ export class NgbdModalContent implements OnInit{
     obj.title = this.productform.value.titre === '' ? this.prd.title : this.productform.value.titre;
     obj.description = this.productform.value.ds === '' ? this.prd.description : this.productform.value.ds;
     obj.price = this.productform.value.pr === '' ? this.prd.price : this.productform.value.pr;
-    obj.categoryId = this.productform.value.catt === '' ? this.prd.categoryId : this.productform.value.catt;
+    obj.category = this.productform.value.catt === '' ? this.prd.category : this.productform.value.catt;
     obj.quantity = this.productform.value.qte === '' ? this.prd.quantity : this.productform.value.qte;
    // obj.imgpr = this.productform.value.tr === '' ? obj.tarification : this.productform.value.tr;
 
@@ -103,12 +103,13 @@ export class ShowComponent implements OnInit {
   constructor(private productservice:ProductService,private modalService: NgbModal) { }
 
   ngOnInit() {
-    this.productservice.getproducts().subscribe(data => {
-      this.prod = data;
-    });
-
+    this.loadproducts();
   }
-
+ loadproducts(){
+    this.productservice.getproducts().subscribe(data => {
+     this.prod = data;
+   });
+ }
   open(id: number) {
     const modalRef = this.modalService.open(NgbdModalContent);
     this.productservice.getproductbyid(id).subscribe(data => {
@@ -121,8 +122,9 @@ export class ShowComponent implements OnInit {
 
   deleteprdd(id: number) {
     if(confirm('êtes-vous sûr de vouloir supprimer ce produit ? ')) {
-      this.productservice.deleteprd(id).subscribe(data2=>'ok');
-      window.location.reload();
+      this.productservice.deleteprd(id).subscribe(data2=>{
+        this.loadproducts();
+      });
     }
   }
 }

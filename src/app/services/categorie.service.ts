@@ -16,6 +16,8 @@ export class CategorieService {
    getcat()  {
     return   this.http.get<Categorie[]>('/api/categories');
   }
-
+deletecat(idcat){
+    return this.http.delete<Categorie>('/api/categories/'+idcat)
+}
 
 }

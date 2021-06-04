@@ -3,33 +3,28 @@
   <div class="zigzag-bottom"></div>
   <div class="container">
     <div class="row">
-      <div class="col-md-4">
-
+      <div class="col-md-3">
         <form name="myForm" >
-
         <div class="single-sidebar" ><input class="form-check-input" type="checkbox" value="" id="" (click)="openall()"  >
-          <h5 style="color: #0b0b0b">Catégories:ㅤ</h5>
+          <h5 style="color: #0b0b0b">Catégories:</h5>
         </div>
-        <div class="single-sidebar" >
+         <div class="single-sidebar">
           <div class="form-check" *ngFor="let x of cat" >
-
-            <input class="form-check-input" type="checkbox" name="cattt" (click)="open(x.id)">
-            <h6 style="color: #1B1B1B">{{x.name}} </h6>
+            <a style="color: black;  font-weight: 900;margin-bottom: 25px;cursor: pointer" (click)="open(x.id)">.{{x.name}}</a>
           </div>
         </div>
         </form>
       </div>
 
-      <div class="col-md-8">
-
+      <div class="col-md-9">
         <div class="container">
           <div class="row">
-
+            <div class="vl" style="height:{{30+cat.length*46}}px;" ></div>
             <div class="col col-xl-4 col-lg-6 col-md-6 col-sm-6 col-8" *ngFor="let x of prds">
               <div class="ui-block" data-mh="friend-groups-item">
                 <div class="single-product" >
                   <div class="product-f-image">
-                    <img src="{{x.imgpr}}" alt="{{x.title}}" style="margin-left:45px;width:120px;height:250px">
+                    <img src="{{x.imgpr}}" alt="{{x.title}}" style="width:100%;height:250px">
                     <div class="product-hover">
 <!--
                       <a routerLink='/store/panier' class="add-to-cart-link">AJOUTER AU <i class="fa fa-shopping-cart"></i></a>
@@ -37,9 +32,9 @@
                       <a  [routerLink]="[ '/store/detail',x.id,cartt.id]" class="view-details-link"><i class="fa fa-link" ></i> Détails</a>
                     </div>
                   </div>
-                  <h2 style="margin-left: 40px">{{x.title.substr(0,15)}}</h2>
+                  <h2 style="margin-left: 5px">{{x.title.substr(0,15)}}</h2>
                   <div class="product-carousel-price">
-                    <ins style="margin-left: 50px">{{x.price}} €</ins>
+                    <ins style="margin-left: 5px">{{x.price}} €</ins>
                   </div>
                   <div>
                     rating
@@ -47,9 +42,11 @@
                 </div>
               </div>
             </div>
+            <p *ngIf="prds.length==0" class="prrr">.Aucun produit pour le moment </p>
 
           </div>
-          <p *ngIf="prds.length==0" class="prrr">Aucun produit dans cette catégorie </p>
+
+
         </div>
 
 

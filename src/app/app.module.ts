@@ -16,6 +16,8 @@ import {StorebackModule} from './components/storeback/storeback.module';
 import {AngularFireStorageModule} from '@angular/fire/storage'
 import {AngularFireModule} from '@angular/fire'
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore';
+import {SidebarrightComponent} from './components/layout/sidebarright/sidebarright.component';
 
 
 
@@ -40,6 +42,7 @@ export function kcInitializer(keycloak: KeycloakService): () => Promise<any> {
     AppComponent,
     HeaderComponent,
     SidemenuComponent,
+    SidebarrightComponent,
     RoomsComponent,
     ChatComponent,
   ],
@@ -55,6 +58,7 @@ export function kcInitializer(keycloak: KeycloakService): () => Promise<any> {
     CommonModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
+    AngularFirestoreModule
 
   ],
   providers: [

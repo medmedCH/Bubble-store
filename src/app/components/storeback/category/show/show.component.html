@@ -1,0 +1,21 @@
+<h3 class="prd">liste des Catégories</h3>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Titre</th>
+    <th scope="col">Description</th>
+    <th scope="col">Modifier</th>
+    <th scope="col">Supprimer</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let x of cat">
+
+    <td >{{x.name}}</td>
+    <td>{{x.description}}</td>
+    <td style="width:120px;height:200px"> <button class="btn btn-primary"><i class="far fa-edit"></i></button></td>
+    <td style="width:120px;height:200px"> <button class="btn btn-danger"  (click)="deletecat(x.id)"><i class="far fa-trash-alt"></i></button></td>
+
+  </tr>
+  </tbody>
+</table>

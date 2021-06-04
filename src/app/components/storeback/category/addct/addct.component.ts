@@ -43,7 +43,7 @@ export class AddctComponent  {
 
         if(this.productForm.valid) {
           this.categorieservice.addcat(category).subscribe(data=>'Bien');
-          this.router.navigateByUrl('/storeback/strback/cat');
+          this.router.navigateByUrl('/storeback/strbackkk/cat/showcat');
         }else return this.router.navigateByUrl('storeback/strback/addcat');
 
   }

@@ -1,3 +1,10 @@
 .prrr{
   color: #0b0b0b;
+  margin-left: 45px;
+  font-weight: 900;
+}
+.vl{
+  border-left: 1px solid black;
+  margin: 0 -1px;
+
 }

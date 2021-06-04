@@ -12,7 +12,7 @@
   border-color: #0b0b0b;
 }
 .butt{
-  margin-left: 400px;
+  margin-left: 500px;
 
 }
 .cssdiv{
@@ -20,8 +20,16 @@
   color: #0b0b0b
 }
 .bb{
-  margin-left: 300px;
+  margin-left: 350px;
   border: 1px solid black;
+  padding: 15px 32px;
+
+}
+.bc{
+  margin-left: 385px;
+  border: 1px solid black;
+
+
 }
 .opt{
   text-decoration-color: #0b0b0b;

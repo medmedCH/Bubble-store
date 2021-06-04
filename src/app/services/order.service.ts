@@ -9,6 +9,7 @@ import {Product} from '../Models/Product';
   providedIn: 'root'
 })
 export class OrderService {
+  private ord: Order;
 
   constructor(private http: HttpClient) { }
 

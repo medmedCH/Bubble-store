@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
      else
        return 'user';
   }
-Logout():void{
+   Logout():void{
     this.ks.logout();
 }
 
