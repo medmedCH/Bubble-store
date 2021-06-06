@@ -4,6 +4,7 @@ import {Cart} from './Cart';
 export class Order {
     id:number;
     totalPrice:number;
+  totalbubblecoin:number;
   totalarticles:number;
     status:Orderstatus;
     orderItems:Array<Orderitem>;

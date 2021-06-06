@@ -5,6 +5,7 @@ export class Product{
   title:string;
   description:string;
   price: number ;
+  bubblecoin:number;
   quantity:number;
   category:Categorie;
   imgpr:string;

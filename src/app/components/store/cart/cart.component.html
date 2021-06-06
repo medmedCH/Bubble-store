@@ -1,16 +1,3 @@
-<!--
-<div class="product-big-title-area">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="product-bit-title text-center">
-          <h2>Votre Panier</h2>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> &lt;!&ndash; End Page title area &ndash;&gt;
--->
 <br>
 <div>
   <div *ngIf="orderitems.length>0; then thenBlock else elseBlock"></div>
@@ -21,7 +8,7 @@
       <div class="col-md-8">
         <div class="product-content-right">
           <div class="woocommerce">
-            <form method="post" action="#">
+            <form [formGroup]="qteForm">
               <hr>
               <table cellspacing="0" class="shop_table cart" >
                 <tbody *ngFor="let x of orderitems">
@@ -34,16 +21,14 @@
                     <p class="titlee">{{x.product.title}} </p>
                     <div *ngIf="x.product.quantity>0; then thenBlock else elseBlock"></div>
                     <ng-template #thenBlock><p class='dispo'>Disponible</p></ng-template>
-                    <ng-template #elseBlock ><p class='nondispo'>Actuellement indisponible.</p></ng-template>                    <p>{{x.product.price}}</p>
-                    <form [formGroup]="qteForm">
+                    <ng-template #elseBlock ><p class='nondispo'>Actuellement indisponible.</p></ng-template><p>{{x.product.price}}</p>
                     <div class="quantity buttons_added">
                       <input type="number" size="4" class="input-text qty text" title="Qty" placeholder="{{x.quantity}}"
-                             min="1"  max="{{x.product.quantity}}" onkeyup="if(this.value<0){this.value= this.value * -1}" onkeypress='
+                              min="1"  max="{{x.product.quantity}}" onkeyup="if(this.value<0){this.value= this.value * -1}" onkeypress='
                              return event.charCode > 48 && event.charCode <= 57 ' formControlName="qte"  >
                     </div>
                       <a class="clicc" (click)="deleteprdd(x.id)">|Supprimer|</a>
                       <a class="clicc" (click)="updateorderitem(x.id)">Modifier(qté)</a>
-                    </form>
                   </td>
                 </tr>
                 </tbody>
@@ -54,15 +39,16 @@
     </div>
       <div class="vl" ></div>
       <div class="col-md-4" >
-        <div class="itemtolatl">
+        <div class="itemtolatl" *ngIf="order.totalPrice!=0">
           <div>
         Sous-total ({{order.totalarticles}} articles): {{order.totalPrice}} €
+            <h5 class="bc"> ({{order.totalbubblecoin}} B-coin)</h5>
           </div>
           <br>
         <div *ngIf="orderitemss==false">
           <button class="btn btn-primary" style="background-color:#172b4d;color: white " type="button"
-                  routerLink="/storeback/strback/cat/accueil">
-            <span class="btn-inner&#45;&#45;text" >Passer la commande</span>
+                  routerLink="/store/modepayement">
+            <span>Passer la commande</span>
           </button>
         </div>
         </div>

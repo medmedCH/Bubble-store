@@ -20,6 +20,7 @@
                 <h5 class="product-name">{{prod.title}}</h5>
                 <div class="product-inner-price">
                   Prix :<h3 class="prixx">{{prod.price}} €</h3>
+                  <h3 class="prixx">{{prod.bubblecoin}} B-Coin</h3>
                 </div>
                 <div class="product-inner-price">
                 <div *ngIf="prod.quantity>0; then thenBlock else elseBlock"></div>

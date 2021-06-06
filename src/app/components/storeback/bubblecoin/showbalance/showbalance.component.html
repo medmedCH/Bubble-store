@@ -1,0 +1,21 @@
+<h3 class="cpte">Les soldes d'Utilisateurs </h3>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Nom</th>
+    <th scope="col">Prénom</th>
+    <th scope="col">Email</th>
+    <th scope="col">Soldes</th>
+  </tr>
+  </thead>
+  <tbody >
+  <tr *ngFor="let y of users;let i = index;">
+    <td>{{y.firstName}}</td>
+    <td >{{y.lastName}}</td>
+    <td >{{y.email}}</td>
+    <td  class="bubble">
+      {{soldes[i].balance}}
+    </td> B-Coin
+  </tr>
+  </tbody>
+</table>

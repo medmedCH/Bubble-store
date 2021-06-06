@@ -34,9 +34,10 @@ export class DetailproduitComponent implements OnInit{
   async ngOnInit() {
     mytest();
     aaaaa();
-    console.log('aaaaaa');
     this.loadorder();
     this.loadproduct();
+    mytest();
+    aaaaa();
   }
   async loadorder(){
     this.order=await this.orderservice.getuserorder(this.route.snapshot.paramMap.get('idcart')).toPromise();

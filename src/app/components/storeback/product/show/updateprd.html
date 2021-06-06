@@ -22,10 +22,25 @@
       </div>
       <div class="form-group row">
         <label for="inputprc" class="col-sm-2 col-form-label">Prix</label>
-        <div class="col-sm-10">
+        <div class="col-sm-8">
           <input type="text" class="form-control" id="inputprc" placeholder="{{prd.price}}" formControlName="pr"   >
         </div>
+        <div class="col-sm-2">
+          <select class="form-control" id="example" name="categoryId" formControlName="devise" class="cc">
+            <option value="Dollar">$</option>
+            <option value="DT">DT</option>
+            <option value="Euro">€</option>
+          </select>
+        </div>
       </div>
+
+      <div class="form-group row"  >
+        <label for="" class="col-sm-2 col-form-label">Prix en Bubble-Coin</label>
+        <div class="col-sm-10">
+          <input type="text" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"  class="form-control" id="" placeholder="{{prd.bubblecoin}}" formControlName="bubblecoin" class="cc">
+          </div>
+      </div>
+
       <div class="form-group row">
         <label for="inputprd" class="col-sm-2 col-form-label">Catégorie</label>
         <div class="col-sm-10">
@@ -49,6 +64,17 @@
           <label for="fileimg" class="bb"><i class="fas fa-plus"></i> Image Principale
             <input type="file" name="file" id="fileimg" style="display: none;"
                    accept="image/*" #imageInput >
+          </label>
+        </div>
+      </div>
+      <div class="form-group row"  >
+        <label for="" class="col-sm-2 col-form-label">Images:</label>
+        <div class="col-sm-10">
+
+
+          <label for="fileimgs" class="bc"><i class="fas fa-plus"></i> <i class="fas fa-plus"></i><i class="fas fa-plus"></i>
+            <input type="file" name="images" id="fileimgs" style="display: none;"
+                   accept="image/*" #imageInput  multiple="" >
           </label>
         </div>
       </div>

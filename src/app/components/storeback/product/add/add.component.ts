@@ -18,7 +18,6 @@ export class AddComponent implements OnInit {
   file: any ;
   filee:string;
   myfiles:string[]=[];
-  urls=[];
   img:any;
   prod:Product;
   constructor(private afStorage: AngularFireStorage ,private categorieservice: CategorieService,private productservice:ProductService , private router: Router) { }
@@ -32,7 +31,9 @@ export class AddComponent implements OnInit {
     priceInput: new FormControl('', [Validators.required]),
     devise:new FormControl('', [Validators.required]),
     images:new FormControl('', [Validators.required]),
+    bubblecoin:new FormControl('', [Validators.required])
   });
+
   get titreinput() {
     return this.productForm.get('titreinput');
   }
@@ -54,6 +55,9 @@ export class AddComponent implements OnInit {
   get images() {
     return this.productForm.get('images');
   }
+  get bubblecoin() {
+    return this.productForm.get('bubblecoin');
+  }
 
   upload($event: any) :void {
     this.file = $event.target.files[0];
@@ -74,7 +78,7 @@ export class AddComponent implements OnInit {
     this.myfiles.push(event.target.files[i]);
     this.productForm.get('images').setValue(this.myfiles);
    }
-     console.log(this.myfiles[0]);
+     console.log(this.myfiles);
     }
 
   addproduct() {
@@ -114,6 +118,7 @@ export class AddComponent implements OnInit {
           quantity:this.quantity.value,
           category:this.catego.value,
           price: this.priceInput.value,
+          bubblecoin:this.bubblecoin.value,
           imgpr:value,
           images1:value1,
           images2:value2,
@@ -127,7 +132,7 @@ export class AddComponent implements OnInit {
         if(this.productForm.valid) {
           this.productservice.addproduct(product).subscribe(data=>'Bien');
           this.router.navigateByUrl('storeback/strbackkk/product/show');
-        }else return this.router.navigateByUrl('storeback/strbackkk/product/add');
+        }else  alert('Form invalid ')
       });
     })
     });
@@ -145,6 +150,7 @@ export class AddComponent implements OnInit {
   onReset() {
     this.submitted = false;
     this.productForm.reset();
+    this.myfiles=null;
     this.img=null;
   }
 }

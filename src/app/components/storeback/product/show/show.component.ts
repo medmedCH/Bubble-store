@@ -27,6 +27,8 @@ export class NgbdModalContent implements OnInit{
     titre: new FormControl('', [Validators.required]),
     ds: new FormControl('', [Validators.required]),
     pr: new FormControl('', [Validators.required]),
+    devise: new FormControl('', [Validators.required]),
+    bubblecoin:new FormControl('', [Validators.required]),
     catt: new FormControl('', [Validators.required]),
     qte: new FormControl('', [Validators.required]),
   });
@@ -54,7 +56,12 @@ export class NgbdModalContent implements OnInit{
   get qte() {
     return this.productform.get('qte');
   }
-
+  get devise() {
+    return this.productform.get('devise');
+  }
+  get bubblecoin() {
+    return this.productform.get('bubblecoin');
+  }
   upload($event: any) :void {
     this.file = $event.target.files[0];
     console.log(this.file);
@@ -77,7 +84,9 @@ export class NgbdModalContent implements OnInit{
     obj.price = this.productform.value.pr === '' ? this.prd.price : this.productform.value.pr;
     obj.category = this.productform.value.catt === '' ? this.prd.category : this.productform.value.catt;
     obj.quantity = this.productform.value.qte === '' ? this.prd.quantity : this.productform.value.qte;
-   // obj.imgpr = this.productform.value.tr === '' ? obj.tarification : this.productform.value.tr;
+    obj.devise = this.productform.value.devise === '' ? this.prd.devise : this.productform.value.devise;
+    obj.bubblecoin = this.productform.value.bubblecoin === '' ? this.prd.bubblecoin : this.productform.value.bubblecoin;
+    // obj.imgpr = this.productform.value.tr === '' ? obj.tarification : this.productform.value.tr;
 
     this.productservice.updateprd(id,obj).subscribe(data => data);
     this.activeModal.close('Close click');

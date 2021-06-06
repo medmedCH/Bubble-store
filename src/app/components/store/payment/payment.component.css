@@ -1,11 +1,9 @@
-.hrr{
-  border-color: #0b0b0b;
-}
-.pp{
+.mp{
   color: black;
   font-weight: 900;
 }
-.mm{
-  color: black;
+.tdd{
+  cursor: pointer;
+color: black;
   font-weight: 900;
 }

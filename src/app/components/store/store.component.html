@@ -3,11 +3,11 @@
     <div class="row">
       <div class="col-md-11">
         <div class="shopping-item">
-          <a routerLink="/store/panier"><i class="far fa-wallet" ></i></a>
+          <a routerLink="store/" (click)="open()"><i class="far fa-wallet" ></i></a>
         </div>
       </div>
         <div class="shopping-item">
-          <a routerLink="/store/panier"><span class="cart-amunt" ></span> <i class="far fa-shopping-cart" ></i> <span class="product-count">{{order.totalarticles}}</span></a>
+          <a routerLink="/store/panier"><span class="cart-amunt" ></span> <i class="far fa-shopping-cart" ></i     > <span class="product-count" *ngIf="order!=null">{{order.totalarticles}}</span></a>
         </div>
     </div>
   </div>

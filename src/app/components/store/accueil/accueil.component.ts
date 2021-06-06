@@ -11,6 +11,7 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 import {Cart} from '../../../Models/Cart';
 import {Observable} from 'rxjs';
 import {OrderService} from '../../../services/order.service';
+import {BcoinService} from '../../../services/bcoin.service';
 const helper = new JwtHelperService();
 
 @Component({
@@ -26,22 +27,19 @@ export class AccueilComponent implements OnInit {
   cartt:Cart;
   cat: Categorie[] = [];
   prds:Product[] = [];
-  constructor(private orderservice:OrderService,private categorieservice: CategorieService,private productservice:ProductService , private router: Router,private ks :KeycloakService,  private cartservice:CartService) {}
+  constructor(private bcoinservice:BcoinService,private orderservice:OrderService,private categorieservice: CategorieService,private productservice:ProductService , private router: Router,private ks :KeycloakService,  private cartservice:CartService) {}
   async ngOnInit() {
     this.categorieservice.getcat().subscribe(data => {
       this.cat = data;
-      console.log('aaaa=');
-      console.log(data);
     });
     this.productservice.getproducts().subscribe(qq=>{
       this.prds = qq
-      console.log('products=');
-      console.log(qq)
     });
     const decodedToken = helper.decodeToken(await this.ks.getToken());
     if (await this.havecart()) {}
     else{
         await this.cartservice.addcartuser(decodedToken.sub).toPromise();
+        await this.bcoinservice.addwalet(decodedToken.sub).toPromise();
       }
      if(await this.haveordercartt()===true){}
       else{

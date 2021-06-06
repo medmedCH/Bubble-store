@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {KeycloakService} from 'keycloak-angular';
 import {Router} from '@angular/router';
 import {CartService} from '../../../services/cart.service';
@@ -19,7 +19,8 @@ const helper = new JwtHelperService();
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-
+  @Input() productss: any[];
+  @Output() productAdded = new EventEmitter();
   cart:Cart;
   order:Order;
   orderitems:Orderitem[];
@@ -57,6 +58,6 @@ export class CartComponent implements OnInit {
   }
  async updateorderitem(id: number) {
    await this.orderservice.updateorderitem(id,this.qteForm.value.qte).toPromise();
-    this.loadcartprdperorder();
+   this.loadcartprdperorder();
   }
 }

@@ -5,6 +5,8 @@ import {CommonModule} from '@angular/common';
 import { NgModule } from '@angular/core';
 import {ChargerComponent} from './charger/charger.component';
 import {BubblecoinRouting} from './bubblecoin.routing';
+import { ShowbalanceComponent } from './showbalance/showbalance.component';
+import { AccueilComponent } from './accueil/accueil.component';
 
 
 
@@ -21,7 +23,9 @@ import {BubblecoinRouting} from './bubblecoin.routing';
 
 
   declarations: [
-    ChargerComponent
+    ChargerComponent,
+    ShowbalanceComponent,
+    AccueilComponent
   ],
   providers: [],
   exports: [],

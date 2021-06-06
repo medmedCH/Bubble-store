@@ -5,27 +5,28 @@
     <th scope="col">Nom</th>
     <th scope="col">Prénom</th>
     <th scope="col">Email</th>
-    <th scope="col">Image </th>
-    <th scope="col">Ajouter</th>
-    <th scope="col">Soldes</th>
     <th scope="col">Supprimer</th>
+    <th scope="col">Soldes</th>
+    <th scope="col">Ajouter</th>
   </tr>
   </thead>
-  <tbody>
-  <tr *ngFor="let y of users">
+  <tbody >
+  <tr *ngFor="let y of users;let i = index;">
     <td>{{y.firstName}}</td>
     <td >{{y.lastName}}</td>
     <td >{{y.email}}</td>
-    <td><img src="" ></td>
-    <td > <button class="btn btn-primary"  ><i class="far fa-minus-circle"></i></button></td>
-    <td style="width: 10%">
-      <form  >
-       <input type="text"  class="montant" [defaultValue]="0">
+    <td > <button class="btn btn-primary" (click)="unloadaccount(soldes[i].id)" ><i class="far fa-minus-circle"></i></button></td>
+    <td style="width: 10%" >
+      <form [formGroup]="balanveForm">
+       <input type="text"  class="montant" placeholder="{{soldes[i].balance}}"
+              onkeyup="if(this.value<0){this.value= this.value * -1}"
+                              formControlName="balance">
+        <div *ngIf="balance.invalid && balance.touched" class="alert alert-danger">
+          <div *ngIf=" balance.touched && balance.errors.required">Solde obligatoire </div>
+        </div>
       </form>
-
     </td>
-    <td > <button class="btn btn-danger"  ><i class="far fa-plus-circle"></i></button></td>
-
+    <td> <button class="btn btn-danger"  (click)="loadaccount(soldes[i].id)"><i class="far fa-plus-circle"></i></button></td>
   </tr>
   </tbody>
 </table>
