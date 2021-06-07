@@ -8,6 +8,9 @@ import {Cart} from '../../../Models/Cart';
 import {Order} from '../../../Models/Order';
 import {BcoinService} from '../../../services/bcoin.service';
 import {SoldesBCoin} from '../../../Models/SoldesBCoin';
+import {HttpClient} from '@angular/common/http';
+import {loadStripe} from '@stripe/stripe-js/pure';
+import {environment} from '../../../../environments/environment';
 const helper = new JwtHelperService();
 
 @Component({
@@ -19,7 +22,8 @@ export class PaymentComponent implements OnInit {
   cart:Cart;
   order:Order;
   solde:SoldesBCoin;
-  constructor(private orderservice:OrderService,private ks :KeycloakService, private router: Router , private cartservice:CartService, private bcoinservice:BcoinService) { }
+  stripePromise = loadStripe(environment.stripeconfig.stripe);
+  constructor(private orderservice:OrderService,private ks :KeycloakService, private router: Router , private cartservice:CartService, private bcoinservice:BcoinService,private http: HttpClient) { }
 
   async ngOnInit() {
     const decodedToken = helper.decodeToken(await this.ks.getToken());
@@ -27,17 +31,48 @@ export class PaymentComponent implements OnInit {
     this.order=await this.orderservice.getuserorder(this.cart.id).toPromise();
     this.bcoinservice.getsolde(decodedToken.sub).subscribe(dataa=>{
       this.solde=dataa
-    })
+    });
   }
 
-  paymentbubblecoin(){
-    console.log(this.solde.balance);
-    console.log(this.order.totalbubblecoin);
-    if(this.solde.balance>this.order.totalbubblecoin){
-      alert('votre paiement a été effectué avec succès')
-    }else {
-     alert('erreur , Votre solde Bubble coin est insufusant')
+ async paymentbubblecoin(){
+    if(this.solde.balance>=this.order.totalbubblecoin){
+      await this.bcoinservice.unloadaccount(this.solde.id,this.order.totalbubblecoin).toPromise();
+      await this.cartservice.deletecart(this.cart.id).toPromise();
+      alert('votre paiement a été effectué avec succès');
+        await this.router.navigateByUrl('/store/accueil');
+      setTimeout(()=>{
+        window.location.reload();
+      }, 100);
+    }else{
+     alert('erreur , Votre solde Bubble-Coin est insufusant')
     }
   }
+
+  async pay(): Promise<void> {
+    // here we create a payment object
+    const payment = {
+      name: 'Montant à payer',
+      currency: 'usd',
+      // amount on cents *10 => to be on dollar
+      amount: this.order.totalPrice,
+      quantity: '1',
+      cancelUrl: 'http://localhost:4200/store/cancel',
+      successUrl: 'http://localhost:4200/store/success',
+    };
+
+    const stripe = await this.stripePromise;
+
+    // this is a normal http calls for a backend api
+    this.http
+      .post(`api/payment`, payment)
+      .subscribe((data: any) => {
+        // I use stripe to redirect To Checkout page of Stripe platform
+        stripe.redirectToCheckout({
+          sessionId: data.id,
+        });
+      });
+  }
+
+
 
 }

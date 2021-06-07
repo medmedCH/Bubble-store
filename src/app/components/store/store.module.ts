@@ -10,6 +10,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { PaybubblecoinComponent } from './paybubblecoin/paybubblecoin.component';
 import { PaymentstripeComponent } from './paymentstripe/paymentstripe.component';
 import { PaymentComponent } from './payment/payment.component';
+import { CancelComponent } from './cancel/cancel.component';
+import { SucessComponent } from './sucess/sucess.component';
 
 
 
@@ -21,7 +23,7 @@ import { PaymentComponent } from './payment/payment.component';
 
     ],
   declarations: [
-    AccueilComponent, StoreComponent, DetailproduitComponent, CartComponent, NgbdwalletModalContent, PaybubblecoinComponent, PaymentstripeComponent, PaymentComponent,
+    AccueilComponent, StoreComponent, DetailproduitComponent, CartComponent, NgbdwalletModalContent, PaybubblecoinComponent, PaymentstripeComponent, PaymentComponent, CancelComponent, SucessComponent,
 
   ],
   providers: [CategorieService],

@@ -12,6 +12,7 @@ import {Cart} from '../../../Models/Cart';
 import {Observable} from 'rxjs';
 import {OrderService} from '../../../services/order.service';
 import {BcoinService} from '../../../services/bcoin.service';
+import {SoldesBCoin} from '../../../Models/SoldesBCoin';
 const helper = new JwtHelperService();
 
 @Component({
@@ -27,15 +28,12 @@ export class AccueilComponent implements OnInit {
   cartt:Cart;
   cat: Categorie[] = [];
   prds:Product[] = [];
+  solde:SoldesBCoin;
   constructor(private bcoinservice:BcoinService,private orderservice:OrderService,private categorieservice: CategorieService,private productservice:ProductService , private router: Router,private ks :KeycloakService,  private cartservice:CartService) {}
   async ngOnInit() {
-    this.categorieservice.getcat().subscribe(data => {
-      this.cat = data;
-    });
-    this.productservice.getproducts().subscribe(qq=>{
-      this.prds = qq
-    });
+    await this.loadd();
     const decodedToken = helper.decodeToken(await this.ks.getToken());
+    this.solde=await this.bcoinservice.getsolde(decodedToken.sub).toPromise();
     if (await this.havecart()) {}
     else{
         await this.cartservice.addcartuser(decodedToken.sub).toPromise();
@@ -78,5 +76,14 @@ export class AccueilComponent implements OnInit {
   async haveordercartt(){
     this.cartt=await this.getcartactive();
     return this.orderservice.haveordecart(this.cartt.id).toPromise()
+  }
+  async loadd(){
+    const decodedToken = helper.decodeToken(await this.ks.getToken());
+    this.categorieservice.getcat().subscribe(data => {
+      this.cat = data;
+    });
+    this.productservice.getproducts().subscribe(qq=>{
+      this.prds = qq
+    });
   }
 }

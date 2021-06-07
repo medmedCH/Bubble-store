@@ -5,6 +5,8 @@ import {Routes , RouterModule } from '@angular/router';
 import {NgModule} from '@angular/core';
 import {CartComponent} from './cart/cart.component';
 import {PaymentComponent} from './payment/payment.component';
+import {CancelComponent} from './cancel/cancel.component';
+import {SucessComponent} from './sucess/sucess.component';
 
 const routes: Routes = [
   {
@@ -15,6 +17,8 @@ const routes: Routes = [
       { path: 'detail/:idprd/:idcart',      component: DetailproduitComponent },
       { path: 'panier',      component: CartComponent },
       { path: 'modepayement',      component: PaymentComponent },
+      { path: 'cancel',      component: CancelComponent },
+      { path: 'success',      component: SucessComponent },
 
 
     ]

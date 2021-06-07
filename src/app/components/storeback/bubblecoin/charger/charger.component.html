@@ -18,9 +18,9 @@
     <td > <button class="btn btn-primary" (click)="unloadaccount(soldes[i].id)" ><i class="far fa-minus-circle"></i></button></td>
     <td style="width: 10%" >
       <form [formGroup]="balanveForm">
-       <input type="text"  class="montant" placeholder="{{soldes[i].balance}}"
-              onkeyup="if(this.value<0){this.value= this.value * -1}"
-                              formControlName="balance">
+       <input type="number"  class="montant" placeholder="{{soldes[i].balance}}"
+             min="0" onkeyup="if(this.value<0){this.value= this.value * -1}"
+                              formControlName="balance" >
         <div *ngIf="balance.invalid && balance.touched" class="alert alert-danger">
           <div *ngIf=" balance.touched && balance.errors.required">Solde obligatoire </div>
         </div>

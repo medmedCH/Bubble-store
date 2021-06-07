@@ -27,4 +27,7 @@ export class CartService {
   getallusers(){
     return this.http.get<KeycloakProfile[]>('http://localhost:9080/auth/admin/realms/bubble/roles/user/users');
   }
+  deletecart(idcart){
+    return this.http.delete<Cart>('/api/carts/'+idcart);
+  }
 }

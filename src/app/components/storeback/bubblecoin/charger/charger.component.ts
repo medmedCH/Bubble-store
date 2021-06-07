@@ -18,7 +18,7 @@ export class ChargerComponent implements OnInit {
   constructor(private cartservice:CartService,private bcoinservice:BcoinService, private router: Router) {
   }
   balanveForm = new FormGroup({
-    balance: new FormControl('', Validators.pattern('^[0-9]*$')),
+    balance: new FormControl('',[Validators.required])
   });
   get balance() {
     return this.balanveForm.get('balance');

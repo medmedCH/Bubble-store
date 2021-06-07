@@ -96,10 +96,6 @@ export class NgbdModalContent implements OnInit{
 
 
 
-
-
-
-
 @Component({
   selector: 'app-show',
   templateUrl: './show.component.html',
