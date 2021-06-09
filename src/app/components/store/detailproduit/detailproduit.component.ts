@@ -32,6 +32,8 @@ export class DetailproduitComponent implements OnInit{
     return this.qteForm.get('quantity');
   }
   async ngOnInit() {
+    mytest();
+    aaaaa();
     await this.loadorder();
     await this.loadproduct();
     mytest();

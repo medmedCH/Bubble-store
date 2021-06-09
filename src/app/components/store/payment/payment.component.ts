@@ -11,6 +11,7 @@ import {SoldesBCoin} from '../../../Models/SoldesBCoin';
 import {HttpClient} from '@angular/common/http';
 import {loadStripe} from '@stripe/stripe-js/pure';
 import {environment} from '../../../../environments/environment';
+import {Orderitem} from '../../../Models/Orderitem';
 const helper = new JwtHelperService();
 
 @Component({
@@ -22,6 +23,7 @@ export class PaymentComponent implements OnInit {
   cart:Cart;
   order:Order;
   solde:SoldesBCoin;
+  orderitems:Orderitem[]=[];
   stripePromise = loadStripe(environment.stripeconfig.stripe);
   constructor(private orderservice:OrderService,private ks :KeycloakService, private router: Router , private cartservice:CartService, private bcoinservice:BcoinService,private http: HttpClient) { }
 

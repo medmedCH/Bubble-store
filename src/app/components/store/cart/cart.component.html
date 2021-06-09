@@ -14,11 +14,11 @@
                 <tbody *ngFor="let x of orderitems;let i = index;">
                 <tr>
                   <td class="imgcart">
-                    <img src="{{x.product.imgpr}}" style="width:150px;height:120px">
+                    <img src="{{x.product.imgpr}}" style="width:150px;height:120px" [routerLink]="[ '/store/detail',x.product.id,cart.id]" class="imgprd" >
                   </td>
 
                   <td class="product-name" colspan="3">
-                    <p class="titlee">{{x.product.title}} </p>
+                    <p class="titlee" [routerLink]="[ '/store/detail',x.product.id,cart.id]">{{x.product.title}} </p>
                     <div *ngIf="x.product.quantity>0; then thenBlock else elseBlock"></div>
                     <ng-template #thenBlock><p class='dispo'>Disponible</p></ng-template>
                     <ng-template #elseBlock ><p class='nondispo'>Actuellement indisponible.</p></ng-template><p>{{x.product.price}}</p>
@@ -35,7 +35,7 @@
             </form>
         </div>
       </div>
-    </div>
+     </div>
       <div class="vl" ></div>
       <div class="col-md-4" >
         <div class="itemtolatl" *ngIf="order.totalPrice!=0">

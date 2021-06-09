@@ -13,6 +13,8 @@
 .titlee{
   color: black;
   font-weight: 900;
+  cursor: pointer;
+  text-decoration: underline;
 
 }
 .clicc{
@@ -35,4 +37,7 @@ height: 75px;
 }
 .bc{
   color: #f45b39;
+}
+.imgprd{
+  cursor: pointer;
 }

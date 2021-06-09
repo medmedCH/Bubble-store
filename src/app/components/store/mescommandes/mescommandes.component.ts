@@ -9,6 +9,7 @@ import {CartService} from '../../../services/cart.service';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {Cart} from '../../../Models/Cart';
 import {Order} from '../../../Models/Order';
+import {Orderitem} from '../../../Models/Orderitem';
 const helper = new JwtHelperService();
 
 @Component({
@@ -20,6 +21,10 @@ export class MescommandesComponent implements OnInit {
 carts:Cart[]=[];
 order:Order;
 orders:Order[]=[];
+orderitems:Orderitem[]=[];
+   totalprice:number ;
+  private totalbcoin: number;
+
   constructor(private bcoinservice:BcoinService,private orderservice:OrderService,private categorieservice: CategorieService,private productservice:ProductService , private router: Router,private ks :KeycloakService,  private cartservice:CartService) { }
 
   async ngOnInit() {
@@ -31,6 +36,15 @@ orders:Order[]=[];
       this.orders.push(this.order);
     }
     console.log('orders',this.orders);
+    }
+
+    openorder(orderid,totalprice,totalbcoin){
+    this.orderservice.getorderitemsperorder(orderid).subscribe(dataa=>{
+      this.orderitems=dataa
+      console.log(this.orderitems)
+    })
+      this.totalprice=totalprice;
+    this.totalbcoin=totalbcoin;
     }
 
 }
