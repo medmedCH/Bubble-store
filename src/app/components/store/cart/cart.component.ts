@@ -19,8 +19,7 @@ const helper = new JwtHelperService();
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  @Input() productss: any[];
-  @Output() productAdded = new EventEmitter();
+  @Output() productAddednumber = new EventEmitter();
   cart:Cart;
   order:Order;
   orderitems:Orderitem[];
@@ -36,6 +35,9 @@ export class CartComponent implements OnInit {
 
   async ngOnInit() {
      this.loadcartprdperorder();
+    this.orderservice.getorderitemsperorder(this.order.id).subscribe(data=>{
+      this.orderitems=data
+    })
   }
   deleteprdd(id: number) {
     if(confirm('êtes-vous sûr de vouloir supprimer ce produit ? ')) {
@@ -55,9 +57,15 @@ export class CartComponent implements OnInit {
         this.orderitemss=true;
       }
     }
+    this.orderservice.getorderitemsperorder(this.order.id).subscribe(data=>{
+      this.orderitems=data
+    })
   }
  async updateorderitem(id: number) {
+   const decodedToken = helper.decodeToken(await this.ks.getToken());
    await this.orderservice.updateorderitem(id,this.qteForm.value.qte).toPromise();
    this.loadcartprdperorder();
+   this.cart=await this.cartservice.getactivecartuser(decodedToken.sub).toPromise();
+   this.orderservice.getuseroderr(this.cart.id)
   }
 }

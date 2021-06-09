@@ -25,10 +25,9 @@
                     <div class="quantity buttons_added">
                       <input type="number" size="4" class="input-text qty text" title="Qty" placeholder="{{x.quantity}}"
                               min="1"  max="{{x.product.quantity}}" onkeyup="if(this.value<0){this.value= this.value * -1}" onkeypress='
-                             return event.charCode > 48 && event.charCode <= 57 ' formControlName="qte"  >
+                             return event.charCode > 48 && event.charCode <= 57 ' formControlName="qte" (change)="updateorderitem(x.id)" >
                     </div>
-                      <a class="clicc" (click)="deleteprdd(x.id)">|Supprimer|</a>
-                      <a class="clicc" (click)="updateorderitem(x.id)">Modifier(qté)</a>
+                      <a class="clicc" (click)="deleteprdd(x.id)">Supprimer</a>
                   </td>
                 </tr>
                 </tbody>
@@ -41,7 +40,7 @@
       <div class="col-md-4" >
         <div class="itemtolatl" *ngIf="order.totalPrice!=0">
           <div>
-        Sous-total ({{order.totalarticles}} articles): {{order.totalPrice}} €
+        Sous-total ({{orderservice.ord.totalarticles}} articles): {{orderservice.ord.totalPrice}} €
             <h5 class="bc"> ({{order.totalbubblecoin}} B-coin)</h5>
           </div>
           <br>

@@ -15,8 +15,8 @@ export class CartService {
   addcartuser(iduser:string){
     return this.http.post<Cart>('/api/carts/customer/'+iduser,null);
   }
-  getactivecart(iduser){
-    return this.http.get<Cart[]>('/api/carts/customeractive/'+iduser);
+  getcartspaid(iduser){
+    return this.http.get<Cart[]>('/api/carts/getcarts/'+iduser);
   }
   havecart(iduser):Observable<boolean>{
     return this.http.get<boolean>('/api/carts/exist/'+iduser);

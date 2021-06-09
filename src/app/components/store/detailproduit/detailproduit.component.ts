@@ -36,8 +36,6 @@ export class DetailproduitComponent implements OnInit{
     aaaaa();
     this.loadorder();
     this.loadproduct();
-    mytest();
-    aaaaa();
   }
   async loadorder(){
     this.order=await this.orderservice.getuserorder(this.route.snapshot.paramMap.get('idcart')).toPromise();
@@ -52,12 +50,12 @@ export class DetailproduitComponent implements OnInit{
     if(this.qteForm.valid) {
       this.orderservice.addorderitemss(orderitem)
         .subscribe(data=>'Bien');
-      this.loadcartprdperorder();
-      this.router.navigateByUrl('/store/panier');
-      this.loadcartprdperorder();
+      await this.loadcartprdperorder();
+      await this.router.navigateByUrl('/store/panier');
+      await this.loadcartprdperorder();
     }
-    this.loadcartprdperorder();
-
+    await this.loadcartprdperorder();
+   await this.orderservice.getuseroderr(this.route.snapshot.paramMap.get('idcart'));
   }
   async loadcartprdperorder(){
     this.order=await this.orderservice.getuserorder(this.route.snapshot.paramMap.get('idcart')).toPromise();

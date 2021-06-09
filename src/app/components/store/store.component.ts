@@ -21,7 +21,6 @@ const helper = new JwtHelperService();
   selector: 'app-store',
   templateUrl: './wallet.html',
   styleUrls: ['./store.component.css']
-
 })
 
 // tslint:disable-next-line:component-class-suffix
@@ -30,6 +29,9 @@ export class NgbdwalletModalContent implements OnInit{
 
   constructor(public activeModal: NgbActiveModal , private bcoinservice:BcoinService,private ks :KeycloakService) {}
   async ngOnInit() {
+    await this.getsoldee();
+  }
+ async getsoldee(){
     const decodedToken = helper.decodeToken(await this.ks.getToken());
     this.bcoinservice.getsolde(decodedToken.sub).subscribe(dataa=>{
       this.solde=dataa
@@ -51,26 +53,32 @@ export class StoreComponent  implements OnInit{
 
   constructor(private modalService: NgbModal, private orderservice:OrderService,private ks :KeycloakService, private router: Router , private cartservice:CartService ) { }
   async ngOnInit() {
+    const decodedToken = helper.decodeToken(await this.ks.getToken());
     await this.loadcartprdperorder();
+    this.cart=await this.cartservice.getactivecartuser(decodedToken.sub).toPromise();
+    this.orderservice.getuseroderr(this.cart.id)
+
   }
   async loadcartprdperorder(){
     const decodedToken = helper.decodeToken(await this.ks.getToken());
     if (await this.havecart()) {
-      this.cart = await this.cartservice.getactivecartuser(decodedToken.sub).toPromise();
+      this.cart=await this.cartservice.getactivecartuser(decodedToken.sub).toPromise();
       this.order = await this.orderservice.getuserorder(this.cart.id).toPromise();
       this.orderitems= await this.orderservice.getorderitemsperorder(this.order.id).toPromise();
-
     }
+    this.orderservice.getuserorder(this.cart.id).subscribe(data11=>{
+      this.order=data11;
+    })
   }
   async havecart(){
     const decodedToken = helper.decodeToken(await this.ks.getToken());
     return  this.cartservice.havecart(decodedToken.sub).toPromise();
+
   }
-  open() {
+  async open() {
     this.loadcartprdperorder();
     this.modalService.open(NgbdwalletModalContent);
+    this.order = await this.orderservice.getuserorder(this.cart.id).toPromise();
+
   }
-
-
-
 }

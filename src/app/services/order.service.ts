@@ -9,7 +9,7 @@ import {Product} from '../Models/Product';
   providedIn: 'root'
 })
 export class OrderService {
-  private ord: Order;
+  public ord: Order;
 
   constructor(private http: HttpClient) { }
 
@@ -22,6 +22,11 @@ export class OrderService {
   getuserorder(idcart){
     return this.http.get<Order>('api/orders/getorder/'+idcart)
   }
+  getuseroderr(idcart):void{
+     this.http.get<Order>('api/orders/getorder/'+idcart).subscribe(data=>{
+       this.ord=data
+     })
+  }
   addorderitemss(orderitem){
     return this.http.post<Orderitem>('api/order-items',orderitem)
   }
@@ -33,5 +38,8 @@ export class OrderService {
   }
   updateorderitem(id,qte){
     return this.http.put('api/order-items/'+id,qte);
+  }
+  getorderr(idcart){
+    return this.http.get<Order>('api/orders/getorderss/'+idcart);
   }
 }

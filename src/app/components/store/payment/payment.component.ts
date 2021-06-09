@@ -38,7 +38,8 @@ export class PaymentComponent implements OnInit {
     if(this.solde.balance>=this.order.totalbubblecoin){
       await this.bcoinservice.unloadaccount(this.solde.id,this.order.totalbubblecoin).toPromise();
       await this.cartservice.deletecart(this.cart.id).toPromise();
-      alert('votre paiement a été effectué avec succès');
+      alert('Votre paiement a été effectué avec succès .' +
+        'Votre compte Bubble-coin sera débité de '+this.order.totalbubblecoin+'B-coin' );
         await this.router.navigateByUrl('/store/accueil');
       setTimeout(()=>{
         window.location.reload();
@@ -61,7 +62,6 @@ export class PaymentComponent implements OnInit {
     };
 
     const stripe = await this.stripePromise;
-
     // this is a normal http calls for a backend api
     this.http
       .post(`api/payment`, payment)

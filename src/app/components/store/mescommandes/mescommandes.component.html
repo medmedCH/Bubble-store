@@ -1,0 +1,44 @@
+<br>
+<div>
+  <div *ngIf="orders.length>0; then thenBlock else elseBlock"></div>
+  <ng-template #thenBlock><h3 class='vp'>Mes Commandes </h3></ng-template>
+  <ng-template #elseBlock><p class='vp'>Vous n'avez passé aucune commande .</p></ng-template>
+</div>
+<div class="row">
+  <div class="col-md-4" >
+    <div class="itemtolatl" >
+      <div>
+        Sous-total ( articles):  €
+        <h5 class="bc"> ( B-coin)</h5>
+      </div>
+      <br>
+
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="product-content-right">
+      <div class="woocommerce">
+        <form >
+          <hr>
+          <table cellspacing="0" class="shop_table cart" >
+            <tbody>
+            <tr>
+              <td class="imgcart">
+                <img src="" style="width:150px;height:120px">
+              </td>
+
+              <td class="product-name" colspan="3">
+                <p class="titlee">title </p>
+                <div class="quantity buttons_added">
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+</div>

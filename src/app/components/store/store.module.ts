@@ -7,11 +7,10 @@ import { CartComponent } from './cart/cart.component';
 import {CategorieService} from '../../services/categorie.service';
 import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
-import { PaybubblecoinComponent } from './paybubblecoin/paybubblecoin.component';
-import { PaymentstripeComponent } from './paymentstripe/paymentstripe.component';
 import { PaymentComponent } from './payment/payment.component';
 import { CancelComponent } from './cancel/cancel.component';
 import { SucessComponent } from './sucess/sucess.component';
+import { MescommandesComponent } from './mescommandes/mescommandes.component';
 
 
 
@@ -20,11 +19,9 @@ import { SucessComponent } from './sucess/sucess.component';
         StoreRouting,
         CommonModule,
         ReactiveFormsModule,
-
     ],
   declarations: [
-    AccueilComponent, StoreComponent, DetailproduitComponent, CartComponent, NgbdwalletModalContent, PaybubblecoinComponent, PaymentstripeComponent, PaymentComponent, CancelComponent, SucessComponent,
-
+    AccueilComponent, StoreComponent, DetailproduitComponent, CartComponent, NgbdwalletModalContent, PaymentComponent, CancelComponent, SucessComponent, MescommandesComponent,
   ],
   providers: [CategorieService],
   entryComponents: [NgbdwalletModalContent],

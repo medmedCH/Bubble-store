@@ -78,7 +78,6 @@ export class AccueilComponent implements OnInit {
     return this.orderservice.haveordecart(this.cartt.id).toPromise()
   }
   async loadd(){
-    const decodedToken = helper.decodeToken(await this.ks.getToken());
     this.categorieservice.getcat().subscribe(data => {
       this.cat = data;
     });

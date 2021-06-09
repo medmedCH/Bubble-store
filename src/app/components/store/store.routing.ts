@@ -7,6 +7,7 @@ import {CartComponent} from './cart/cart.component';
 import {PaymentComponent} from './payment/payment.component';
 import {CancelComponent} from './cancel/cancel.component';
 import {SucessComponent} from './sucess/sucess.component';
+import {MescommandesComponent} from './mescommandes/mescommandes.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,8 @@ const routes: Routes = [
       { path: 'modepayement',      component: PaymentComponent },
       { path: 'cancel',      component: CancelComponent },
       { path: 'success',      component: SucessComponent },
+      { path: 'mescmds',      component: MescommandesComponent }
+
 
 
     ]
