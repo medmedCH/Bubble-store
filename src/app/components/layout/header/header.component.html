@@ -379,13 +379,6 @@
                     <span>Create Fav Page</span>
                   </a>
                 </li>
-                <li>
-                  <a href="#">
-                    <svg class="olymp-logout-icon"><use xlink:href="#olymp-logout-icon"></use></svg>
-
-                    <span (click)="Logout()">Log Out</span>
-                  </a>
-                </li>
                 <li *ngIf="getuserole()=='admin'">
                   <a routerLink="/storeback/strbackkk">
                     <svg class="olymp-three-dots-icon" > ><use xlink:href="#olymp-three-dots-icon"></use></svg>
@@ -393,6 +386,14 @@
                     <span>Gestion Bubble-store</span>
                   </a>
                 </li>
+                <li>
+                  <a href="#">
+                    <svg class="olymp-logout-icon"><use xlink:href="#olymp-logout-icon"></use></svg>
+
+                    <span (click)="Logout()">Log Out</span>
+                  </a>
+                </li>
+
               </ul>
 
               <div class="ui-block-title ui-block-title-small">

@@ -22,12 +22,13 @@ export class CartComponent implements OnInit {
   @Output() productAddednumber = new EventEmitter();
   cart:Cart;
   order:Order;
-  orderitems:Orderitem[];
+  orderitems:Orderitem[]=[];
   orderitemss:boolean;
   products:Product[]=[];
   product:Product;
   orderitem:Orderitem;
   disabled:boolean;
+
   constructor(private productservice:ProductService, private orderservice:OrderService,private ks :KeycloakService, private router: Router , private cartservice:CartService ) { }
   qteForm = new FormGroup({
     qte: new FormControl('', [Validators.required]),
@@ -35,15 +36,15 @@ export class CartComponent implements OnInit {
 
   async ngOnInit() {
      this.loadcartprdperorder();
-    this.orderservice.getorderitemsperorder(this.order.id).subscribe(data=>{
-      this.orderitems=data
-    })
   }
-  deleteprdd(id: number) {
-    if(confirm('êtes-vous sûr de vouloir supprimer ce produit ? ')) {
-      this.orderservice.deleteorderitem(id).subscribe(data2=>'ok');
-      this.loadcartprdperorder();
+  async deleteprdd(id: number) {
+    const decodedToken = helper.decodeToken(await this.ks.getToken());
+    if (confirm('êtes-vous sûr de vouloir supprimer ce produit ? ')) {
+      await this.orderservice.deleteorderitem(id).toPromise();
     }
+    this.cart=await this.cartservice.getactivecartuser(decodedToken.sub).toPromise();
+    this.orderservice.getuseroderr(this.cart.id);
+    await this.loadcartprdperorder();
   }
   async loadcartprdperorder(){
     const decodedToken = helper.decodeToken(await this.ks.getToken());
@@ -57,15 +58,12 @@ export class CartComponent implements OnInit {
         this.orderitemss=true;
       }
     }
-    this.orderservice.getorderitemsperorder(this.order.id).subscribe(data=>{
-      this.orderitems=data
-    })
   }
  async updateorderitem(id: number) {
    const decodedToken = helper.decodeToken(await this.ks.getToken());
    await this.orderservice.updateorderitem(id,this.qteForm.value.qte).toPromise();
-   this.loadcartprdperorder();
    this.cart=await this.cartservice.getactivecartuser(decodedToken.sub).toPromise();
-   this.orderservice.getuseroderr(this.cart.id)
-  }
+   this.orderservice.getuseroderr(this.cart.id);
+   await this.loadcartprdperorder();
+ }
 }

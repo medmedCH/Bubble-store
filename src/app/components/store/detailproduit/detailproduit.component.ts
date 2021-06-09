@@ -32,10 +32,10 @@ export class DetailproduitComponent implements OnInit{
     return this.qteForm.get('quantity');
   }
   async ngOnInit() {
+    await this.loadorder();
+    await this.loadproduct();
     mytest();
     aaaaa();
-    this.loadorder();
-    this.loadproduct();
   }
   async loadorder(){
     this.order=await this.orderservice.getuserorder(this.route.snapshot.paramMap.get('idcart')).toPromise();
@@ -70,12 +70,17 @@ export class DetailproduitComponent implements OnInit{
         this.orderitemss=true;
       }
     }
+    await this.orderservice.getuseroderr(this.route.snapshot.paramMap.get('idcart'));
+
   }
 loadproduct(){
    this.productservice.getproductbyid(this.route.snapshot.paramMap.get('idprd')).subscribe(data=>{
      this.prod=data;
+     if(this.prod.quantity === 0){
+       this.disabled=true
+     }else {this.disabled=false;}
+     console.log('dd',this.disabled)
    });
-  this.disabled = this.prod.quantity === 0;
 }
 
 }

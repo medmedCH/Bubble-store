@@ -3,13 +3,13 @@ import {HttpClient} from '@angular/common/http';
 import {Order} from '../Models/Order';
 import {Observable} from 'rxjs';
 import {Orderitem} from '../Models/Orderitem';
-import {Product} from '../Models/Product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
   public ord: Order;
+  public orderitem:Orderitem;
 
   constructor(private http: HttpClient) { }
 
@@ -26,6 +26,11 @@ export class OrderService {
      this.http.get<Order>('api/orders/getorder/'+idcart).subscribe(data=>{
        this.ord=data
      })
+  }
+  getorderitem(idorderitem):void{
+    this.http.get<Orderitem>('api/order-items/'+idorderitem).subscribe(data1=>{
+      this.orderitem=data1
+    })
   }
   addorderitemss(orderitem){
     return this.http.post<Orderitem>('api/order-items',orderitem)
