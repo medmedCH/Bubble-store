@@ -888,7 +888,7 @@ text-transform: uppercase;
 }
 table.shop_table {
   margin-top: 0px;
-  margin-left: -85px;
+  margin-left: 15px;
   width: 100%;
 }
 table.shop_table th, table.shop_table td {

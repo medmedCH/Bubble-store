@@ -68,9 +68,7 @@ export class AddComponent implements OnInit {
     // tslint:disable-next-line:variable-name
     reader.onload = (_event) => {
       this.img = reader.result;
-
     };
-
   }
   upload1(event)  {
    for (let i=0;i<3;i++){

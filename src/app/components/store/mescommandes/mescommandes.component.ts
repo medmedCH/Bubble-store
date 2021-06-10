@@ -23,7 +23,7 @@ order:Order;
 orders:Order[]=[];
 orderitems:Orderitem[]=[];
    totalprice:number ;
-  private totalbcoin: number;
+   totalbcoin: number;
 
   constructor(private bcoinservice:BcoinService,private orderservice:OrderService,private categorieservice: CategorieService,private productservice:ProductService , private router: Router,private ks :KeycloakService,  private cartservice:CartService) { }
 
@@ -42,9 +42,9 @@ orderitems:Orderitem[]=[];
     this.orderservice.getorderitemsperorder(orderid).subscribe(dataa=>{
       this.orderitems=dataa
       console.log(this.orderitems)
-    })
       this.totalprice=totalprice;
     this.totalbcoin=totalbcoin;
+    })
     }
 
 }

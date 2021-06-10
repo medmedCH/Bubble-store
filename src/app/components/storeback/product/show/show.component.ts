@@ -107,13 +107,11 @@ export class ShowComponent implements OnInit {
 
   constructor(private productservice:ProductService,private modalService: NgbModal) { }
 
-  ngOnInit() {
-    this.loadproducts();
+ async ngOnInit() {
+   await this.loadproducts();
   }
- loadproducts(){
-    this.productservice.getproducts().subscribe(data => {
-     this.prod = data;
-   });
+ async loadproducts(){
+    this.prod=await this.productservice.getproducts().toPromise();
  }
   open(id: number) {
     const modalRef = this.modalService.open(NgbdModalContent);
@@ -125,11 +123,10 @@ export class ShowComponent implements OnInit {
     });
   }
 
-  deleteprdd(id: number) {
+ async deleteprdd(id: number) {
     if(confirm('êtes-vous sûr de vouloir supprimer ce produit ? ')) {
-      this.productservice.deleteprd(id).subscribe(data2=>{
-        this.loadproducts();
-      });
+    await  this.productservice.deleteprd(id).toPromise();
     }
+    this.loadproducts();
   }
 }

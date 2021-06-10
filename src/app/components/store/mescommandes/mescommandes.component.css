@@ -3,7 +3,7 @@
   margin: 0 -1px;
 }
 .vp{
-  margin-left: 450px;
+  margin-left: 500px;
   color: black;
   font-weight: 900;
 }
@@ -13,4 +13,20 @@
   font-weight: 800;
   padding-top: 0px;
   padding-bottom: 50px;
+}
+.prbc{
+  color: black;
+  font-weight: 700;
+}
+.titlee{
+  color: black;
+  font-weight: 900;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.imgprd{
+  cursor: pointer;
+}
+.pricee{
+  font-weight: 900;
 }

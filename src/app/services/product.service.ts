@@ -6,7 +6,7 @@ import {Product} from '../Models/Product';
   providedIn: 'root'
 })
 export class ProductService {
-
+public prod:Product[]=[];
   constructor(private http: HttpClient) { }
 
   addproduct(produit){

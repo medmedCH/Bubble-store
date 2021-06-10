@@ -365,18 +365,16 @@
 
               <ul class="account-settings">
                 <li>
-                  <a href="29-YourAccount-AccountSettings.html">
-
-                    <svg class="olymp-menu-icon"><use xlink:href="#olymp-menu-icon"></use></svg>
-
-                    <span>Profile Settings</span>
-                  </a>
-                </li>
-                <li>
                   <a href="36-FavPage-SettingsAndCreatePopup.html">
                     <svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="#olymp-star-icon"></use></svg>
 
                     <span>Create Fav Page</span>
+                  </a>
+                </li>
+                <li>
+                  <a [routerLink]="[ '/store/mescmds']">
+                    <svg class="olymp-menu-icon"><use xlink:href="#olymp-menu-icon"></use></svg>
+                    <span>Mes Commandes</span>
                   </a>
                 </li>
                 <li *ngIf="getuserole()=='admin'">

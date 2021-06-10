@@ -1,9 +1,9 @@
-<br>
 <div>
   <div  *ngIf="orders.length>0; then thenBlock else elseBlock"></div>
-  <ng-template #thenBlock><h3 class='vp'>Vos Commandes </h3></ng-template>
+  <ng-template #thenBlock><h4 class='vp'>Vos Commandes </h4></ng-template>
   <ng-template #elseBlock><p class='vp'>Vous n'avez passé aucune commande .</p></ng-template>
 </div>
+<br>
 <div class="row">
   <div class="col-md-3" >
     <div class="itemtolatl" >
@@ -20,26 +20,21 @@
   <div class="vl" style="height:{{30+orders.length*46}}px;" ></div>
   <div class="col-md-9">
     <div class="product-content-right">
+      <p *ngIf="orderitems.length!=0" class="prbc">Sous total de {{totalprice}} Euro et {{totalbcoin}} Bubble-Coin</p>
       <div class="woocommerce"*ngFor="let x of orderitems;let i = index;">
-        <p>Sous total de {{totalprice}} Euro et {{totalbcoin}} Bubble-Coin</p>
-        <hr>
         <form >
           <table class="shop_table cart" >
             <tbody >
             <tr>
               <td class="imgcart">
-                <img src="{{x.product.imgpr}}" style="width:150px;height:120px"  class="imgprd" >
+                <img src="{{x.product.imgpr}}" [routerLink]="[ '/store/detail',x.product.id,carts[i].id]" style="width:150px;height:120px"  class="imgprd" >
               </td>
 
               <td class="product-name" colspan="3">
-                <p class="titlee" >{{x.product.title}} </p>
-                <p>{{x.product.price}} {{x.product.devise}}</p>
-                <p>{{x.product.bubblecoin}} Bubble-Coin
-                <div class="quantity buttons_added">
-                  <input type="number" size="4" class="input-text qty text" title="Qty" placeholder="{{orderitems[i].quantity}}"
-                         min="1"  max="{{x.product.quantity}}" onkeyup="if(this.value<0){this.value= this.value * -1}" onkeypress='
-                             return event.charCode > 48 && event.charCode <= 57 ' formControlName="qte" (change)="updateorderitem(x.id)" ngModel="" >
-                </div>
+                <p class="titlee" [routerLink]="[ '/store/detail',x.product.id,carts[i].id]" >{{x.product.title}} </p>
+                <p class="pricee">{{x.product.price}} €</p><p class="pricee">{{x.product.bubblecoin}} Bubble-Coin
+
+               <p class="pricee">Quantité :{{orderitems[i].quantity}}</p>
               </td>
             </tr>
             </tbody>
