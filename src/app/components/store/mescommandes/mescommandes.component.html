@@ -12,7 +12,7 @@
       </div>
       <div class="single-sidebar">
         <div class="form-check" *ngFor="let x of orders;let i = index;" >
-          <a style="color: black;  font-weight: 900;margin-bottom: 25px;cursor: pointer"  (click)="openorder(x.id,x.totalPrice,x.totalbubblecoin)">.Commande({{i+1}})</a>
+          <a style="color: black;  font-weight: 900;margin-bottom: 25px;cursor: pointer"  (click)="openorder(x.id,x.totalPrice,x.totalbubblecoin,x.totalarticles)">.Commande({{i+1}})</a>
         </div>
       </div>
     </div>
@@ -20,8 +20,8 @@
   <div class="vl" style="height:{{30+orders.length*46}}px;" ></div>
   <div class="col-md-9">
     <div class="product-content-right">
-      <p *ngIf="orderitems.length!=0" class="prbc">Sous total de {{totalprice}} Euro et {{totalbcoin}} Bubble-Coin</p>
-      <div class="woocommerce"*ngFor="let x of orderitems;let i = index;">
+      <p *ngIf="orderitems.length!=0" class="prbc">Sous total de {{totalprice}} Euro et {{totalbcoin}} Bubble-Coin.({{totalarticles}}articles)</p>
+      <div class="woocommerce" *ngFor="let x of orderitems;let i = index;">
         <form >
           <table class="shop_table cart" >
             <tbody >
@@ -31,7 +31,7 @@
               </td>
 
               <td class="product-name" colspan="3">
-                <p class="titlee" [routerLink]="[ '/store/detail',x.product.id,carts[i].id]" >{{x.product.title}} </p>
+                <p class="titlee" [routerLink]="[ '/store/detail',x.product.id,carts[i].id]" >{{x.product.title.substr(0,10)}}.. </p>
                 <p class="pricee">{{x.product.price}} €</p><p class="pricee">{{x.product.bubblecoin}} Bubble-Coin
 
                <p class="pricee">Quantité :{{orderitems[i].quantity}}</p>

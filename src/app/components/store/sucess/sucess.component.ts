@@ -25,8 +25,11 @@ export class SucessComponent implements OnInit {
     this.cart = await this.cartservice.getactivecartuser(decodedToken.sub).toPromise();
     this.order = await this.orderservice.getuserorder(this.cart.id).toPromise();
     await this.cartservice.deletecart(this.cart.id).toPromise();
-    setTimeout(()=>{
-      window.location.reload();
+    setTimeout(() => {
+      this.router.navigate(['/store/accueil']);
+      setTimeout(()=>{
+        window.location.reload();
+      }, 100);
     }, 3000);
   }
 

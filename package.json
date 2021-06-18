@@ -30,6 +30,7 @@
     "jquery": "^3.6.0",
     "keycloak-angular": "^8.1.0",
     "keycloak-js": "^12.0.4",
+    "ng2-smart-table": "^1.7.2",
     "rxjs": "~6.6.7",
     "tslib": "^1.14.1",
     "zone.js": "~0.11.4"

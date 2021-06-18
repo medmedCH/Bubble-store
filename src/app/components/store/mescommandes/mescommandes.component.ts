@@ -24,7 +24,7 @@ orders:Order[]=[];
 orderitems:Orderitem[]=[];
    totalprice:number ;
    totalbcoin: number;
-
+totalarticles:number;
   constructor(private bcoinservice:BcoinService,private orderservice:OrderService,private categorieservice: CategorieService,private productservice:ProductService , private router: Router,private ks :KeycloakService,  private cartservice:CartService) { }
 
   async ngOnInit() {
@@ -38,12 +38,13 @@ orderitems:Orderitem[]=[];
     console.log('orders',this.orders);
     }
 
-    openorder(orderid,totalprice,totalbcoin){
+    openorder(orderid,totalprice,totalbcoin,totalarticles){
     this.orderservice.getorderitemsperorder(orderid).subscribe(dataa=>{
       this.orderitems=dataa
       console.log(this.orderitems)
       this.totalprice=totalprice;
     this.totalbcoin=totalbcoin;
+    this.totalarticles=totalarticles;
     })
     }
 

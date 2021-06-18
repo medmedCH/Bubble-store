@@ -21,7 +21,7 @@
                     <p class="titlee" [routerLink]="[ '/store/detail',x.product.id,cart.id]">{{x.product.title}} </p>
                     <div *ngIf="x.product.quantity>0; then thenBlock else elseBlock"></div>
                     <ng-template #thenBlock><p class='dispo'>Disponible</p></ng-template>
-                    <ng-template #elseBlock ><p class='nondispo'>Actuellement indisponible.</p></ng-template><p class="pricce">{{x.product.price}} €</p>
+                    <ng-template #elseBlock ><p class='nondispo'>Actuellement indisponible.</p></ng-template><p class="pricce">{{x.product.price}} €</p><p class="pricce">{{x.product.bubblecoin}} B-Coin</p>
                     <div class="quantity buttons_added">
                       <input type="number" size="4" class="input-text qty text" title="Qty" placeholder="{{orderitems[i].quantity}}"
                               min="1"  max="{{x.product.quantity}}" onkeyup="if(this.value<0){this.value= this.value * -1}" onkeypress='

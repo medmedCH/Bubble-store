@@ -15,18 +15,20 @@ export class ShowbalanceComponent implements OnInit {
   soldes:SoldesBCoin[]=[];
   constructor(private cartservice:CartService,private bcoinservice:BcoinService) { }
 
-   ngOnInit() {
-   this.getuserssoldes();
+  async ngOnInit() {
+ await  this.getuserssoldes();
   }
 
   getuserssoldes(){
     this.cartservice.getallusers().subscribe(async data => {
       this.users = data
       for (let j = 0; j < this.users.length; j++) {
-        console.log(this.users[j].id)
         this.solde = await this.bcoinservice.getsolde(this.users[j].id).toPromise();
         await this.soldes.push(this.solde);
       }
     });
   }
+
+
+
 }

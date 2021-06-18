@@ -1,3 +1,4 @@
+<!--
 <div class="single-product-area">
   <div class="zigzag-bottom"></div>
   <div class="container">
@@ -25,13 +26,14 @@
                   <div class="product-f-image">
                     <img src="{{x.imgpr}}" alt="{{x.title}}" style="width:100%;height:250px">
                     <div class="product-hover">
-<!--
+
+&lt;!&ndash;
                       <a routerLink='/store/panier' class="add-to-cart-link">AJOUTER AU <i class="fa fa-shopping-cart"></i></a>
--->
+&ndash;&gt;
                       <a  [routerLink]="[ '/store/detail',x.id,cartt.id]" class="view-details-link"><i class="fa fa-link" ></i> Détails</a>
                     </div>
                   </div>
-                  <h2 style="margin-left: 5px">{{x.title.substr(0,15)}}</h2>
+                  <h2 style="margin-left: 5px;color: black">{{x.title.substr(0,20)}}..</h2>
                   <div class="product-carousel-price">
                     <ins style="margin-left: 5px">{{x.price}}€</ins>
                   <div>
@@ -54,3 +56,76 @@
   </div>
 </div>
 <hr>
+-->
+<!--<section>
+  <div class="container">
+    <div class="row">
+      <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="ui-block responsive-flex1200">
+          <div class="ui-block-title">
+            <div class="w-select" >
+              <div class="title" >Filtrer par :</div>
+              <fieldset class="form-group" >
+                <select class="form-select" >
+                  <option *ngFor="let x of cat" value="{{x.id}}">{{x.name}}</option>
+                </select>
+              </fieldset>
+            </div>
+            <a (click)="open(x.id)" class="btn btn-blue btn-md-2">Chercher Produits</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>-->
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="clients-grid">
+          <ul class="cat-list-bg-style align-center sorting-menu cat-list__item-bg-blue" style="display: inline" *ngFor="let y of cat">
+            <li class="cat-list__item"><a style="cursor: pointer;color: black" (click)="open(y.id)">{{y.name}}</a></li>
+          </ul><br><br><br>
+          <div class="row sorting-container" id="products-grid-1" data-layout="masonry">
+            <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 sorting-item coffee-mugs" *ngFor="let x of prds">
+
+              <div class="shop-product-item product-item-v2">
+                <div class="product-thumb">
+                  <div class="block-title">
+                    <h2 class="h5 title">{{x.title.substr(0,25)}}..</h2>
+
+                  </div>
+                  <div class="block-price">
+                    <div class="product-price">{{x.price}} €</div>
+
+                    <div class="product-price">{{x.bubblecoin}} B-Coin</div>
+                  </div>
+                  <img loading="lazy" src="{{x.imgpr}}" alt="product" width="230" height="218">
+                  <a [routerLink]="[ '/store/detail',x.id,cartt.id]" class="btn btn-blue btn-md-2">Détails</a>
+                </div>
+              </div>
+            </div>
+            <p *ngIf="prds.length==0" class="prrr">.Aucun produit pour le moment </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <!--<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1">Previous</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1<div class="ripple-container"><div class="ripple ripple-on ripple-out" style="left: -10.3833px; top: -16.8333px; background-color: rgb(255, 255, 255); transform: scale(16.7857);"></div></div></a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">...</a></li>
+      <li class="page-item"><a class="page-link" href="#">12</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+  </nav>-->
+</section>

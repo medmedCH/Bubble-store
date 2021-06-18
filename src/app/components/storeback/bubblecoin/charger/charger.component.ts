@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
 import {KeycloakProfile} from 'keycloak-js';
 import {CartService} from '../../../../services/cart.service';
 import {BcoinService} from '../../../../services/bcoin.service';
@@ -11,10 +11,12 @@ import {Router} from '@angular/router';
   templateUrl: './charger.component.html',
   styleUrls: ['./charger.component.css']
 })
+
 export class ChargerComponent implements OnInit {
   users:KeycloakProfile[];
   solde:SoldesBCoin;
   soldes:SoldesBCoin[]=[];
+  searchName = '';
   constructor(private cartservice:CartService,private bcoinservice:BcoinService, private router: Router) {
   }
   balanveForm = new FormGroup({
@@ -31,13 +33,15 @@ export class ChargerComponent implements OnInit {
      if(this.balanveForm.valid) {
        this.bcoinservice.loadaccount(id, this.balanveForm.value.balance).subscribe(data => 'okok');
        this.router.navigateByUrl('storeback/strbackkk/coin/showsoldes');
+       await this.loadchargebc();
      }
   }
  async unloadaccount(id: number){
     if(this.balanveForm.valid) {
       console.log(this.balanveForm.value.balance);
       this.bcoinservice.unloadaccount(id, this.balanveForm.value.balance).subscribe(data => 'okok');
-      this.router.navigateByUrl('storeback/strbackkk/coin/showsoldes');
+      await this.router.navigateByUrl('storeback/strbackkk/coin/showsoldes');
+      await this.loadchargebc();
 
     }
   }

@@ -1,4 +1,11 @@
 <h3 class="cpte">Charger Comptes </h3>
+
+<div class="form-group row" >
+  <div class="col-sm-4">
+    <input type="text" placeholder="chercher.." name="search2" >
+  </div>
+</div>
+
 <table class="table table-striped">
   <thead>
   <tr>
@@ -11,7 +18,7 @@
   </tr>
   </thead>
   <tbody >
-  <tr *ngFor="let y of users;let i = index;">
+  <tr *ngFor="let y of users;let i = index">
     <td>{{y.firstName}}</td>
     <td >{{y.lastName}}</td>
     <td >{{y.email}}</td>

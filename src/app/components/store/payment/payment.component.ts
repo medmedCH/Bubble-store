@@ -55,7 +55,7 @@ export class PaymentComponent implements OnInit {
     // here we create a payment object
     const payment = {
       name: 'Montant à payer',
-      currency: 'usd',
+      currency: 'eur',
       // amount on cents *10 => to be on dollar
       amount: this.order.totalPrice,
       quantity: '1',

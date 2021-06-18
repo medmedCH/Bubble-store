@@ -7,6 +7,7 @@ import {ChargerComponent} from './charger/charger.component';
 import {BubblecoinRouting} from './bubblecoin.routing';
 import { ShowbalanceComponent } from './showbalance/showbalance.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import {Filter} from './charger/filter';
 
 
 
@@ -25,7 +26,8 @@ import { AccueilComponent } from './accueil/accueil.component';
   declarations: [
     ChargerComponent,
     ShowbalanceComponent,
-    AccueilComponent
+    AccueilComponent,
+    Filter
   ],
   providers: [],
   exports: [],
