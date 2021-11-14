@@ -33,7 +33,7 @@ const firebaseConfig  ={
   appId: '1:540436869163:web:3a06a18a5a8c6f4ecc7a6e',
 };
 const stripeconfig ={
-  stripe: 'pk_test_51IozPQCfmk9JAqI95euyRWDBfoUEfckcyrcC4qLJai5eMnltGj1GYLVoqb9nFdHCKrIZyjD23Wm8UXdXCp9NP3Aj00KHdPSRsd',
+  stripe: '****************************',
 }
 export const environment = {
   production: false,
